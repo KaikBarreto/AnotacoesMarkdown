@@ -187,6 +187,45 @@
 
     ***
 
+* ## **<font color=orange size=5>[Funções de renderização]</font>**
+
+    * ### Podemos criar funções que retornam JSX
+
+    * ### Isto serve para criar situações que **dependam de outras condições**.
+
+    * ### Ou seja, o JSX a ser renderizado pode mudar a depender de uma variável.
+
+    * ## **Exemplo:**
+
+        * ### Uma função que retorna um parágrafo dizendo "Ímpar" se o número passado como parâmetro for ímpar e "Par" caso for par.
+
+            #### <center>Definindo a função 
+
+            ```jsx
+            const parOuImpar = function(numero) {
+                if(numero % 2 == 0) {
+                    return <p>Par</p>
+                } 
+                else if (numero % 2 == 1) {
+                    return <p>Ímpar</p>
+                }
+            }
+            ```
+
+            #### <center>Utilizando a função
+
+            ```jsx
+            // ... definição do componente
+
+            return (
+                <p>O número 5 é... {parOuImpar(5)}!</p>
+            )
+            ```
+
+            > #### <center> a frase do parágrafo seria: <font color=cyan>**O número 5 é... Ímpar!**</font> 
+
+    ***
+
 * ## **<font color=orange size=5>[Estrutura de pastas e arquivos]</font>**
 
     * ### Os arquivos possuem uma estrutura flexível, porém com uma base comum:
@@ -720,3 +759,13 @@
         * ### Assim, há uma rota para cada pessoa, baseada no ID passado na rota.
 
         * ### De forma que, ao acessar `"/pessoa/10"`, encontra-se a pessoa de ID 10.
+
+    ***
+
+## **<font size=6 color=orange>[Imagens]</font>**
+
+* ## Imagens públicas no React
+
+    ***
+
+* ## Imagens em src
