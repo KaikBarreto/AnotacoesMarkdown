@@ -536,47 +536,6 @@
         
     ***
 
-* ## **<font color=orange size=5>[Key Prop]</font>**
-
-    * ### Ao utilizar uma estrutura de repetição **_[.map(), .forEach() etc.]_** para gerar componentes dinâmicos, há a necessidade de acrescentar uma propriedade chamada "key", que seja única, ou seja, que não se repita.
-
-    * ### A necessidade da atribuição desta propriedade é para que o react use esta chave para identificar os elementos da lista corretamente
-
-    * ### **Exemplo:**
-
-        ```jsx
-        {
-            people.map(person => (
-                <Card
-                    key={person.time}
-                    name={person.name}
-                    time={person.time} 
-                />
-                )
-            )
-        }
-        ```
-
-        * ### Neste exemplo, a chave é o próprio horário, que, neste caso, não se repetirá entre as gerações de componentes
-
-    ***
-
-* ## **<font color=orange size=5>[Hooks]</font>**
-
-    * ### São recursos do React que têm diversas funções, como, por exemplo, guardar e alterar o estado de algum dado na aplicação etc.
-
-    * ### Eles permitem que usem-se o state e outros recursos do React sem escrever uma classe
-
-    * ### Geralmente seus nomes começam com <font color=lime>**use**</font> e então o nome do **Hook**. 
-
-        * #### Ex.: **[<font color=lime>useState, useEffect</font>]**
-
-    * ### É possível criar nossos próprios hooks, que ganham o nome de **Custom Hook**
-
-    * ### Hooks precisam ser importados e são usados em praticamente toda aplicação React atual.
-
-    ***
-
 * ## **<font color=orange size=5>[useState]</font>**
 
     * ### O **useState** é o mais utilizado e serve para **gerenciar o estado de algum dado**, sendo esta a única forma de alterar uma varíavel e re-renderizá-la no React.
@@ -590,6 +549,10 @@
         #### <center> variável **nome**, cujo valor inicial é **"Kaik"**
 
         ```jsx
+        // importação do useState
+        import { useState } from 'react'
+
+
         // criação da variável 
         const [nome, setNome] = useState("Kaik")
 
@@ -656,6 +619,79 @@
             console.log("O estado da variável Nome foi alterado!")
         }, [Nome])
         ```
+
+    ***
+
+* ## **<font color=orange size=5>[Renderização de Listas]</font>**
+
+    * ### É possível, com uma sintaxe específica, renderizar dados de um array ou object literal (e muitas vezes arrays de objetos) numa estrutura de repetição dentro do template em React.
+
+    * ### Por padrão, utiliza-se o método **map** para iterar sobre o array.
+
+    * ### Além dos dados, é possível **inserir JSX** em cada iteração.
+
+    * ### **Ex.:**
+
+        #### <center> Adicionar à ul (lista) um li (list item) **para cada fruta no array frutas**.
+
+        ```jsx
+        import { useState } from 'react'
+
+        const componente = () => {
+            const [frutas] = useState(["Maçã", "Banana", "Melancia", "Morango"])
+
+            return <div>
+                <ul>
+                    {frutas.map((fruta) => (
+                        <li>{item}</li>
+                    )}
+                </ul>
+            </div>
+        }
+        ```
+
+
+    ***
+
+* ## **<font color=orange size=5>[Key Prop]</font>**
+
+    * ### Ao utilizar uma estrutura de repetição **_[.map(), .forEach() etc.]_** para gerar componentes dinâmicos, há a necessidade de acrescentar uma propriedade chamada "key", que seja única, ou seja, que não se repita.
+
+    * ### A necessidade da atribuição desta propriedade é para que o react use esta chave para identificar os elementos da lista corretamente
+
+    * ### **Exemplo:**
+
+        #### <center> um Card **para cada fruta no array de frutas**, onde a key prop é um ID de cada fruta e a name prop é o nome de cada fruta.
+
+        ```jsx
+        {
+            frutas.map(fruta => (
+                    <Card
+                        key={fruta.ID}
+                        name={fruta.nome}
+                    />
+                )
+            )
+        }
+        ```
+
+        * ### Neste exemplo, a chave é o próprio horário, que, neste caso, não se repetirá entre as gerações de componentes
+
+    ***
+
+* ## **<font color=orange size=5>[Hooks]</font>**
+
+    * ### São recursos do React que têm diversas funções, como, por exemplo, guardar e alterar o estado de algum dado na aplicação etc.
+
+    * ### Eles permitem que usem-se o state e outros recursos do React sem escrever uma classe
+
+    * ### Geralmente seus nomes começam com <font color=lime>**use**</font> e então o nome do **Hook**. 
+
+        * #### Ex.: **[<font color=lime>useState, useEffect</font>]**
+
+    * ### É possível criar nossos próprios hooks, que ganham o nome de **Custom Hook**
+
+    * ### Hooks precisam ser importados e são usados em praticamente toda aplicação React atual.
 
     ***
 
