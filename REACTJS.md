@@ -563,11 +563,44 @@
 
 * ## **<font color=orange size=5>[Hooks]</font>**
 
+    * ### São recursos do React que têm diversas funções, como, por exemplo, guardar e alterar o estado de algum dado na aplicação etc.
+
+    * ### Eles permitem que usem-se o state e outros recursos do React sem escrever uma classe
+
     * ### Geralmente seus nomes começam com <font color=lime>**use**</font> e então o nome do **Hook**. 
 
         * #### Ex.: **[<font color=lime>useState, useEffect</font>]**
 
-    * ### Eles permitem que usem-se o state e outros recursos do React sem escrever uma classe
+    * ### É possível criar nossos próprios hooks, que ganham o nome de **Custom Hook**
+
+    * ### Hooks precisam ser importados e são usados em praticamente toda aplicação React atual.
+
+    ***
+
+* ## **<font color=orange size=5>[useState]</font>**
+
+    * ### O **useState** é o mais utilizado e serve para **gerenciar o estado de algum dado**, sendo esta a única forma de alterar uma varíavel e re-renderizá-la no React.
+
+    * ### Para guardar o dado, utilizamos o retorno da função useState( ), que é uma lista com a variável e uma função para alterar o estado da variável.
+
+    * ### O hook useState recebe como parâmetro o estado inicial da variável a ser criada.
+
+    * ### **Exemplo:**
+
+        #### <center> variável **nome**, cujo valor inicial é **"Kaik"**
+
+        ```jsx
+        // criação da variável 
+        const [nome, setNome] = useState("Kaik")
+
+        // alteração do estado usando a função retornada pelo useState
+        setNome("Matheus")
+        // nome passa a ser "Matheus"
+
+        console.log(nome) // Matheus
+        ```
+
+        #### <center> `A cada vez que é alterado o valor da variável com a função setVariável(), o componente é renderizado novamente, sem dar reload na página.`
 
     ***
 
@@ -604,14 +637,24 @@
 
         ***
 
-    * ### **Exemplo de uso:** 
+    * ### **Exemplos de uso:** 
 
-        ### Imprimir no console uma mensagem assim que a interface for renderizada
+        ### <center> Imprimir no console uma mensagem assim que a interface for renderizada
 
         ```jsx
         useEffect(() => {
             console.log("useEffect foi chamado!")
         }, [])
+        ```
+
+        ***
+
+        ### <center> Imprimir no console uma mensagem toda vez que o estado da variável **Nome** for alterado
+
+        ```jsx
+        useEffect(() => {
+            console.log("O estado da variável Nome foi alterado!")
+        }, [Nome])
         ```
 
     ***
@@ -766,6 +809,46 @@
 
 * ## Imagens públicas no React
 
+    * ### As imagens públicas do projeto podem ficar na pasta public
+
+    * ### De lá, elas podem ser chamadas pelas tags img diretamente pelo <font color=cyan>**/nomeDaImagem.jpg**</font>, pois **a pasta public fica linkada com o src** das imagens.
+
+        * ### **Exemplo:**
+
+            #### <center> importação via public
+
+            ```jsx
+            return (
+                <div>
+                    <img src="/nomeDaImagem.jpg">
+                </div>
+            )
+            ```
+
+            > #### Uma vez que a imagem está na pasta public, não é necessário especificar o caminho da imagem.
+
     ***
 
 * ## Imagens em src
+
+    * ### Também é muito comum, em projetos React, deixar imagens, por padrão, em uma pasta chamada <font color=cyan>**assets**</font> dentro de **src** do projeto.
+
+    * ### Utilizando esta abordagem, é necessário especificar o caminho da imagem, dinâmicamente, baseado em onde a tag img está sendo utilizada, igual a um componente.
+
+    * ### **Exemplo:**
+
+        #### <center> importação via path em src
+    
+        ```jsx
+        import Imagem from '.assets/imagem.jpg'
+
+        return (
+            <div>
+                <img src={Imagem} />
+            </div>
+        )
+        ```
+
+    ***
+
+## **<font size=6 color=orange>[]</font>**
