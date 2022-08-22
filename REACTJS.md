@@ -45,6 +45,39 @@
         export default Navbar
         ```
 
+    * ### Existem duas formas de escrever comentários num arquivo **JSX**:
+
+        * ### Na parte da lógica do componente:
+
+            ```jsx
+            import React from 'react'
+
+            // Algum comentário
+            
+            const component = () => {
+              return (
+                <div>Exemplo</div>
+              )
+            }
+            
+            export default component
+            ```
+
+        * ### No próprio JSX (retorno do componente):
+
+            ```jsx
+            import React from 'react'
+            
+            const componente = () => {
+              return (
+                { /* Algum comentário */}
+                <div>Exemplo</div>
+              )
+            }
+            
+            export default componente
+            ```
+
     * ### Também é possível renderizar componentes de forma declarativa, ou seja, como uma tag HTML, uma vez que os tenha importado:
 
         ```jsx
@@ -76,6 +109,81 @@
             )
         }
         ```
+
+    ***
+
+* ## **<font color=orange size=5>[Template Expressions]</font>**
+
+    * ### trata-se do recurso que permite executar **javascript dentro do JSX** e também interpolar variáveis.
+
+    * ### A sintaxe é: { algumCódigoEmJS }
+
+        * #### Tudo que está entre chaves é processado em javascript e retorna um resultado
+
+    * ### **Exemplo:**
+
+    ```jsx
+    import React from 'react'
+    
+    const name = "Kaik"
+
+    const componente = () => {
+      return (
+        <div>Olá, {name}! Tudo bem?</div>
+      )
+    }
+    
+    export default componente
+    ```
+
+    > #### Neste caso, o conteúdo da div seria: **Olá, Kaik! Tudo bem?**
+
+    ***
+
+* ## **<font color=orange size=5>[Eventos]</font>**
+
+    * ### São essenciais para o desenvolvimento front-end, uma vez que compoem a interação da aplicação com o usuário.
+
+    * ### No React, os eventos já estão 'prontos', podemos utilizar, por exemplo, o evento **OnClick** para ativar uma função ao clicar em um elemento.
+
+    ## **<font color=orange>[Funções nos eventos]</font>**
+
+    * ### Esta função será realizada ao acionar o evento como o OnClick e deve ser criada no próprio componente. 
+
+    * ### Por padrão seu nome é do tipo: <font color="cyan">**handleAlgumaCoisa**</font>
+
+    * ### Estas funções sempre recebem como parâmetro o evento acionado, geralmente abreviado por "e"
+
+        ```jsx
+        const handleClick = function(e){
+            console.log(e)
+        }
+
+        return (
+            <button 
+            OnClick={handleClick}>
+                Clique aqui
+            </button>
+        )
+        ```
+            
+        * > #### ao clicar neste botão, a função handleClick será ativada, logando no console o evento em si.
+
+        ***
+
+    * ### Também é possível passar uma arrow function diretamente no elemento do JSX:
+
+        ```jsx
+        return (
+            <div>
+                <button onClick=>{(e) = console.log(e)} >
+                    Clique aqui também
+                </button>
+            </div>
+        )
+        ```
+
+        * > #### ao clicar neste botão, a função handleClick também será ativada, logando no console o evento em si.
 
     ***
 
@@ -426,7 +534,7 @@
 
 * ## **<font color=orange size=5>[useEffect]</font>**
 
-    * ### É um Hook utilizado para 
+    * ### É um Hook utilizado para realizar uma função passada como parâmetro toda vez que um estado do array de dependências (também passado como parâmetro) for alterado.
 
     * ### O **useEffect** é executado automaticamente **_assim que a interface é renderizada_**
 
@@ -452,7 +560,7 @@
                 useEffect(() => {
                     console.log("Alguém entrou na lista")
                 }, [lista])
-                // toda vez que o estado da lista é alterado, o useEffect é disparado, imprimindo no console que "Alguém entrou na lista"
+                // toda vez que um estado da lista é alterado, o useEffect é disparado, imprimindo no console que "Alguém entrou na lista"
                 ```
 
         ***
