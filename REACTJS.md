@@ -363,7 +363,7 @@
 
     ***
 
-* ## **<font color=orange size=5>[Propriedades/Parâmetros]</font>**
+* ## **<font color=orange size=5>[Props (Propriedades/Parâmetros)]</font>**
 
     * ### Componentes JSX (que são funções) podem receber parâmetros, dinamizando a declaração de um componente na aplicação.
 
@@ -442,6 +442,99 @@
         export default Home
 
         ```
+
+        ***
+
+* ## **<font color=orange size=5>[A prop hildren]</font>**
+
+    * ### é um recurso utilizado para quando um componente **precisa ter JSX dentro dele, porém este JSX vem do componente pai**.
+
+    * ### Então o componente age como um **container**, abraçando estes elementos.
+
+    * ### E children é considerada uma **prop do componente**.
+
+    * ### **Exemplo:**
+
+        #### <center> Um Container que possa receber html dentro de si ao ser utilizado e imprima este html interior atraves da **prop children**.
+
+
+        * #### Criação do componente
+
+            ```jsx
+            const Container = ({children}) => {
+
+                return <>
+                    <h2>Título</h2>
+                    {children}
+                </>
+            }
+            ```
+
+        * #### Utilização do componente Container no componente pai
+
+            ```jsx
+            const App = () => {
+
+                return (
+                    <Container>
+                        <p>conteúdo interno</p>
+                    </Container>
+                )
+            }
+            ```
+
+        * #### <center> <font color=cyan>Será renderizado o seguinte:</font>
+
+            ```jsx
+            <Container>
+                <h2>Título</h2>
+                <p>conteúdo interno</p>
+            </Container>
+            ```
+
+        #### <center> <font color=cyan>Observe que o "{children}" do componente Container foi substituído pelo que estava dentro da tag Container.</font>
+
+    ***
+
+* ## **<font color=orange size=5>[Função como prop]</font>**
+
+    * ### As **funções podem ser passadas como argumento/parâmetro** para um componente filho **via props**.
+
+    * ### Basta criar uma função no componente pai e **enviar como prop** para o componente
+
+    * ### **No componente filho ela pode ser ativada por um evento**.
+
+    * ### **Exemplo:**
+
+        ### <center> No componente pai:
+
+        ```jsx
+        const Pai = () => {
+
+            function mostrarMensagem() {
+                console.log("Evento do componente pai!")
+            }
+
+            return <div>
+                <Filho funcaoHerdada={mostrarMensagem}/>
+            </div>
+        }
+        ```
+
+        ### <center> No componente filho:
+
+        ```jsx
+        const Filho = ({funcaoHerdada}) => {
+
+            return <div>
+                <button onClick={funcaoHerdada}>
+                    Clique aqui para disparar a função herdada.
+                </button>
+            </div>
+        }
+        ```
+
+        #### <center> A função **mostarMensagem( )** foi passada do componente **[Pai]** para o componente **[Filho]**. Assim, o componente **[Filho]** consegue acessar e executar essa função através da Prop **[funcaoHerdada]**
 
     ***
 
@@ -565,6 +658,88 @@
 
         #### <center> `A cada vez que é alterado o valor da variável com a função setVariável(), o componente é renderizado novamente, sem dar reload na página.`
 
+        ***
+
+    ## **<font color=orange>previous state</font>**
+
+    * ### **Previous state** é um recurso que nos permite pegar o dado em seu valor original dentro de um **set** de dado.
+
+    * ### Isso é muito utilizado para **modificar listas**, transformando o valor antigo em um novo valor.
+
+    * ### O **primeiro argumento** de um **set** sempre será o **previous state**, ou seja, o estado prévio (anterior) do dado.
+
+    * ### **Exemplos:**
+
+        #### <center><font color=yellow>**1. mudar o estado do número para o sucessor do mesmo**</font>
+
+        ```jsx
+        // iniciando uma variável numero com o estado 0.
+        const [numero, setNumero] = useState(0)
+
+        setNumero((prevNumero) => {
+            return prevNumero + 1
+        })        
+        ```
+
+        #### <center>O set da variável número recebe como parâmetro uma outra função que usa o valor original do número para retornar seu sucessor e alterar o estado para este novo número.
+
+        ***
+
+        #### <center><font color=yellow>**2. Alterar o estado de uma lista ao passar seu valor original por um filtro**</font>
+
+        ```jsx
+        // iniciando uma variável nomes
+        const [nomes, setNomes] = useState([
+            "Kaik",
+            "Matheus",
+            "Rafaella",
+            "Maicon",
+            "Maria"
+        ])
+
+        setNomes((prevNomes) => {
+            return prevNomes.filter(nome => nome.startsWith("M"))
+        })      
+        ```
+
+        #### <center>O set da variável nomes recebe como parâmetro uma outra função que usa o array original de nomes para retornar um novo array apenas com nomes que comecem com "M".
+
+    ***
+
+* ## **<font color=orange size=5>[State Lift / Elevação de estado]</font>**
+
+    * ### Elevação de estado ou state lift **é quando um valor é elevado do componente filho para o componente pai**.
+
+    * ### Geralmente, tem-se **um componente que usa o state e outro que o altera**.
+
+    * ### Então, precisa-se **passar a alteração para o componente pai, e este passa para o componente que usa o state**.
+
+    * ### **Exemplo:**
+
+        ### <center> No componente pai:
+
+        ```jsx
+        const Pai = () => {
+
+            const [message, setMessage] = useState("")
+
+            function handleMessage(msg) {
+                setMessage(msg)
+            }
+
+            return <div>
+                <Message msg={message} />
+                <ChangeMessage handleMessage={handleMessage} />
+            </div>
+        }
+        ```
+
+        * #### <center> `Neste exemplo, o componente [Pai] administra o estado da variável message.`
+
+        * #### <center> O componente [Message] <font color=cyan>**recebe a variável message para consumí-la**</font>
+
+        * #### <center> O componente [ChangeMessage] <font color=red>**recebe a variável message para alterá-la**</font> e elevar este novo estado para o componente pai, renderizando novamente todos os componentes que consomem esta variável.
+
     ***
 
 * ## **<font color=orange size=5>[useEffect]</font>**
@@ -650,6 +825,78 @@
         }
         ```
 
+    ## <font color="orange">**Renderização de componentes em loop**</font>
+
+    * ### Utilizando dos conceitos de **renderização de listas**, **reaproveitamento de componentes** e **props**, podemos utilizar uma estrutura de repetição como o **map** para exibir múltiplas instâncias de um componente, dinamicamente.
+
+    * ### **Exemplo:**
+
+        ```jsx
+        const carros = [
+            {id: 1, marca: "Ferrari", modelo: "F8"},
+            {id: 2, marca: "Lamborghini", modelo: "Gallardo"},
+            {id: 3, marca: "Rolls Royce", modelo: "Phantom"},
+        ]
+
+        return (
+            <ul>
+                {carros.map((carro) => (
+                    <li key={carro.id}>
+                        <Carro 
+                            marca={carro.marca} 
+                             modelo={carro.modelo} 
+                        />
+                    </li>
+                ))}
+            </ul>
+        )
+        ```
+
+        #### <center> Neste caso, para cada carro no array de carros, é renderizado um **li (list item)**, cuja **key** é o **ID** do carro, contendo um componente **Carro** que recebe as props **marca** e **modelo**. 
+
+    ***
+
+* ## **<font color=orange size=5>[Renderização Condicional]</font>**
+
+    * ### Trata-se da **impressão de uma parte do template baseada em uma condição**, ou seja, utilizando as estruturas condicionais do Javascript **if** e **else**.
+
+    * ### Um uso comum deste tipo de renderização é, por exemplo, um determinado componente ser mostrado caso o usuário esteja logado e não ser mostrado caso não esteja.
+
+    * ### **Exemplo:**
+
+        #### <center><font color=yellow>**exibir um nome no template caso ele comece com a letra K (condicional simples)**</font>
+
+        ```jsx
+        const nome = "Kaik"
+
+        const [começaComK] = useState(nome.startsWith("K")) 
+
+        return (
+            <div>
+                {começaComK && <p>{nome}</p>}
+            </div>
+        )
+        ```
+
+        #### <center>Como a variável nome é uma string que começa com K, a variável "começaComK" inicia-se com o estado true. Sendo true, o paragrafo contendo o nome é renderizado. 
+
+        ***
+
+    ## <font color=orange>**Condicional Composta**</font>
+
+    * ### Para expressar uma condicional com if e else no JSX, utilizam-se os operadores ternários, da seguinte maneira:
+
+        <center>
+
+        <font color=cyan size=4>condição <font color=yellow>?</font> <font color=lime>blocoSeVerdadeiro</font> <font color=yellow>:</font> <font color=red>blocoSeFalso</font></font>
+
+    * ### **Exemplo:**
+
+        ```jsx
+
+        ```
+
+        #### <center>
 
     ***
 
@@ -679,21 +926,21 @@
 
     ***
 
-* ## **<font color=orange size=5>[Hooks]</font>**
+## <center>**<font color=orange size=7>[Hooks]</font>**
 
-    * ### São recursos do React que têm diversas funções, como, por exemplo, guardar e alterar o estado de algum dado na aplicação etc.
+* ### São recursos do React que têm diversas funções, como, por exemplo, guardar e alterar o estado de algum dado na aplicação etc.
 
-    * ### Eles permitem que usem-se o state e outros recursos do React sem escrever uma classe
+* ### Eles permitem que usem-se o state e outros recursos do React sem escrever uma classe
 
-    * ### Geralmente seus nomes começam com <font color=lime>**use**</font> e então o nome do **Hook**. 
+* ### Geralmente seus nomes começam com <font color=lime>**use**</font> e então o nome do **Hook**. 
 
-        * #### Ex.: **[<font color=lime>useState, useEffect</font>]**
+    * #### Ex.: **[<font color=lime>useState, useEffect</font>]**
 
-    * ### É possível criar nossos próprios hooks, que ganham o nome de **Custom Hook**
+* ### É possível criar nossos próprios hooks, que ganham o nome de **Custom Hook**
 
-    * ### Hooks precisam ser importados e são usados em praticamente toda aplicação React atual.
+* ### Hooks precisam ser importados e são usados em praticamente toda aplicação React atual.
 
-    ***
+***
 
 * ## **<font color=orange size=5>[Consumindo API]</font>**
 
@@ -747,6 +994,17 @@
         getUser("https://api.github.com/users/kaikbarreto")
     }, [])
     ```
+
+***
+
+
+
+
+
+
+
+
+
 
 ***
 
