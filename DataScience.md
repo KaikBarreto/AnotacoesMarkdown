@@ -109,13 +109,13 @@
 
 ***
 
-## <center><font color=yellow size=6>[Carregando dados com Pandas]</font>
+## <center><font color=Orange size=8>**Pandas**</font>
 
 * ## Pandas é uma biblioteca python muito popular para análise de dados que já possui em si diversas funções para facilitar a leitura consistente de arquivos de dados.
 
     ***
 
-* ## A biblioteca também funciona à partir de DF's (dataframes), estruturas compostas por **linhas e colunas**.
+* ## A biblioteca também funciona à partir de DF's (dataframes), estruturas compostas por **linhas e colunas**, como uma planilha.
 
 * ### **Ex.:**
 
@@ -126,7 +126,7 @@
     arquivoCSV = pandas.read_csv(caminhoDoArquivo)
     # Neste caso, "arquivoCSV" se torna um dataframe
 
-    arquivoCSV.head()
+    print(arquivoCSV.head())
     # Dataframes pandas possuem o método head(), que é usado para examinar as primeiras 5 linhas do arquivo/dataframe.
     ```
 
@@ -178,7 +178,7 @@
         * #### Ex2
 
             ```python
-            músicasEDatas = músicasDF[["Ano de lançamento","Ano de lançamento"]]
+            músicasEDatas = músicasDF[["Nome da música","Ano de lançamento"]]
             ```
 
             > ### Resultado: um novo dataframe composto pelas colunas especificadas do dataframe original.
@@ -221,3 +221,4 @@
 * ### Existem outros formatos para salvar dataframes pandas.
 
 ***
+
