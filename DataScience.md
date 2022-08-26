@@ -240,7 +240,7 @@
 
     ***
 
-## <center><font color=Orange size=7>**NumPy Unidimensional**</font>
+## <center><font color=Orange size=7>**NumPy Unidimensional (1D)**</font>
 
 ## A biblioteca NumPy possui uma classe específica para abrigar listas e torná-las mais eficientes: a classe array. 
 
@@ -473,3 +473,166 @@
     ```
 
     ### <center> **`o método mean() retorna o valor médio de todos os valores do array.`**
+
+    ***
+
+## <font color=pink size=5>**Valor máximo**</font>
+
+* ### Para calcular o maior valor (valor máximo) de um array, utiliza-se o método **`max()`**:
+
+    ```python
+    array = np.array([50, 70, 300])
+
+    média_array = array.max()
+    # 300 porque 300 > 70 > 50
+    ```
+
+    ### <center> **`o método max() retorna o valor máximo de todos os valores do array.`**
+
+    ***
+
+## <center><font color=pink size=5>**Entre outros... (vide docs)**</font>
+
+***
+## <center><font color=Orange size=7>**NumPy Bidimensional (2D)**</font>
+
+* ## Podemos criar Arrays NumPy com mais de uma dimensão, como, por exemplo, um **Array Bidimensional (2D)**.
+
+    * ### **Exemplo:**
+
+        ```python
+        import numpy as np
+
+        array = np.array([
+            [11, 12, 13], 
+            [21, 22, 23], 
+            [31, 32, 33]
+        ])
+
+        array.ndim # número de dimensões do array: 2
+
+        array.shape # formato do Array/matriz: (3, 3) ~~ 3 listas com 3 elementos cada ~~
+
+        array.size # número de elementos individuais: 9 (3x3)
+        ```
+
+        * ### Neste exemplo, caso deseje-se acessar um elemento específico do **Array/Matriz**, é necessário especificar o índice dos dois eixos:
+
+            ```python
+            array[0][0] # 11
+            ```
+
+        ### **`É comum pensar em matrizes/arrays bidimensionais como um modelo retangular, como uma tabela, onde há um eixo X (horizontal) e um eixo Y (vertical).`**
+
+        ***
+
+        ### <center> **Assim, o elemento `array[0][0]` poderia ser interpretado como o valor da <font color=lime>primeira coluna da primeira linha</font>**
+
+        ```python
+        array = np.array([
+            [11, 12, 13], 
+            [21, 22, 23], 
+            [31, 32, 33]
+        ])
+        ```
+
+        |        | coluna1 | coluna2 | coluna3 |
+        |:------:|:-------:|:-------:|:-------:|
+        | linha1 |    11   |    12   |    13   |
+        | linha2 |    21   |    22   |    23   |
+        | linha3 |    31   |    32   |    33   |
+
+        ### **`Sendo assim, pode-se dizer que o primeiro colchete representa a linha e o segundo a coluna.`**
+
+        *
+            ```python
+            array[linha, coluna] # == elemento
+            ```
+
+    ***
+
+## <font color=pink size=5>**Fatiando arrays 2D/matrizes**</font>
+
+*
+    ```python
+    A = np.array([
+            [11, 12, 13], 
+            [21, 22, 23], 
+            [31, 32, 33]
+        ])
+
+    A[0:2, 2] # [13, 23]
+    # terceiro elemento das linhas 1 e 2
+    ```
+
+***
+
+## <font color=pink size=5>**Operações com matrizes**</font>
+
+* ## As operações funcionam praticamente da mesma forma, porém os efeitos são aplicados nos elementos de mesmo índice em cada matriz, em todas as suas dimensões.
+
+* ## **Exemplos:**
+
+    ## <center><font color=orange size=6>**Soma**</font>
+
+
+    ```python
+    X = np.array([
+        [1, 3],
+        [5, 7]
+    ])
+    # [[1, 3, [5, 7]]
+
+    Y = np.array([
+        [2, 4],
+        [6, 8]
+    ])
+    # [[2, 4], [6, 8]]
+
+    Z = X + Y
+    # [[3, 7], [11, 15]]
+    ```
+
+    ***
+
+    ### **`A soma das duas matrizes (X e Y) retorna uma nova matriz (Z) cujos elementos correspondem à soma dos elementos de mesma posição em X e Y. `**
+
+    ***
+
+    ## <center> X: 
+
+    <center><font color="cyan">
+
+    | 1 | 3 |
+    |:-:|:-:|
+    | 5 | 7 |
+
+    </center></font>
+
+    ***
+
+    ## <center> Y: 
+
+    <center><font color="cyan">
+
+    | 2 | 4 |
+    |:-:|:-:|
+    | 6 | 8 |
+
+    </center></font>
+    
+    ***
+
+    ## <center> Z: 
+
+    <center><font color="cyan">
+
+    | 3 | 7 |
+    |:-:|:-:|
+    | 11 | 15 |
+
+    </center></font>
+    
+    ***
+
+## <font color=orange>**Subtração, multiplicação etc. funcionarão da mesma forma, aplicando a regra para cada elemento de mesma posição dentro da matriz.**</font>
