@@ -1,5 +1,7 @@
 # **<center><font size=10 color="lightblue">REACT</font></center>**
 
+## <center> [Documentação React.js](https://pt-br.reactjs.org/docs/getting-started.html)
+
 * ## Consiste numa biblioteca de JavaScript para a criação de interfaces de usuário (UI's).
 
 * ## Utiliza bastante o paradigma de **_programação funcional_** 

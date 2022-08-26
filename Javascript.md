@@ -1,5 +1,7 @@
 # **<center><font size="10"  color="lightblue">JavaScript</font></center>**
 
+## <center> [Documentação JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+
 ## **Comandos var/let/const: declaração de variável**
 
 * ### Number | converter pra numero

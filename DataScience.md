@@ -111,6 +111,8 @@
 
 ## <center><font color=Orange size=8>**Pandas**</font>
 
+## <center> [Documentação Pandas](https://pandas.pydata.org/docs/)
+
 * ## Pandas é uma biblioteca python muito popular para análise de dados que já possui em si diversas funções para facilitar a leitura consistente de arquivos de dados.
 
     ***
@@ -222,3 +224,252 @@
 
 ***
 
+## <center><font color=Orange size=8>**NumPy**</font>
+
+## <center> [Documentação NumPy](https://numpy.org/doc/)
+
+* ## Ao analisar uma grande quantidade de dados, iterações sobre uma lista começam a se tornar cada vez mais lentas e consomem muita memória.
+
+* ## Para combater este problema, existem bibliotecas, como a **NumPy**, que possuem **classes** construídas para abrigar e aplicar métodos a coleções de dados de forma mais eficiente.
+
+* ### **Import:**
+
+    ```python
+    import numpy as np
+    ```
+
+    ***
+
+## <center><font color=Orange size=7>**NumPy Unidimensional**</font>
+
+## A biblioteca NumPy possui uma classe específica para abrigar listas e torná-las mais eficientes: a classe array. 
+
+## Geralmente, em grandes coleções de dados, a estrutura utilizada possui somente elementos do mesmo **tipo** (int, float, etc.).
+
+## **Exemplo:**
+
+### <center>Abrigar uma lista na classe **array** da lib **NumPy**
+
+*
+    ```python
+    import numpy as np
+
+    array = np.array([0,1,2,3,4])
+    ```
+
+    ***
+
+### Assim como numa lista python convencional, é possível acessar os elementos de um array numpy via **índices**:
+
+*
+    ```python
+    array[0] #  0
+
+    array[1] # 1
+
+    array[-1] # 4
+
+    array[0:4] # [0 1 2 3]
+    ```
+
+    ***
+
+## Arrays numpy possuem diversos atributos pré-moldados, como, por exemplo:
+
+*
+    ```python
+    array.size # número de elementos: 5
+
+    array.ndim # número de dimensões: 1
+
+    array.shape # formato do array, em suas diferentes dimensões: (5,)
+    ```
+
+    ***
+
+## Assim como numa lista convencional, é possível sobrescrever valores específicos de um array:
+
+* 
+    ```python
+    outroArray = np.array([20, 1, 2, 3, 4])
+    # [20, 1, 2, 3, 4]
+
+    outroArray[0] = 100
+    # [100, 1, 2, 3, 4]
+
+    outroArray[4] = 0
+    # [100, 1, 2, 3, 0]
+    ```
+
+    ***
+
+## Como listas e tuplas, estes arrays podem ser fatiados:
+
+*
+    ```python
+    array1 = np.array([0,1,2,3])
+    # [0, 1, 2, 3]
+
+    array2 = array1[1:4]
+    # [1, 2, 3]
+
+    array2[2:4] = 20, 50
+    # [1, 20, 50]
+    ```
+
+    ***
+
+## **NumPy** facilita muitas operações básicas realizadas em **Ciência de Dados**.
+
+## <center><font color=Orange size=6>**Operações Básicas**</font>
+
+## <font color=pink size=5>**Soma**</font>
+
+* ## <center><font color=red>Pior</font>: Soma de listas comuns com laço de repetição:
+
+    ```python
+    x = [1, 0]
+    y = [0, 1]
+    z = []
+
+    for n, m in zip(x, y):
+        z.append(n + m)
+    ```
+
+    ***
+
+* ## <center><font color=lime>Melhor</font>: Soma de arrays em uma linha com NumPy:
+
+    ```python
+    x = np.array([1, 2])
+    # [1, 2]
+
+    y = np.array([4, 3])
+    # [4, 3]
+
+    z = x + y
+    # [5, 5]
+    ```
+
+    > ## <font color=cyan>**z[0] == (x[0] + y[0]) == 5**
+    
+    > ## **z[1] == (x[1] + y[1]) == 5**</font>
+
+    ### A classe array da lib numpy permite que a operação soma entre dois arrays retorne um novo array com a soma dos valores de mesmo índice em cada array somado.
+
+    ***
+
+***
+
+## <font color=pink size=5>**Subtração**</font>
+
+* ## <center><font color=red>Pior</font>: Subtração de listas comuns com laço de repetição:
+
+    ```python
+    x = [1, 0]
+    y = [0, 1]
+    z = []
+
+    for n, m in zip(x, y):
+        z.append(n - m)
+    ```
+
+    ***
+
+* ## <center><font color=lime>Melhor</font>: Subtração de arrays em uma linha com NumPy:
+
+    ```python
+    x = np.array([4, 5])
+    # [4, 5]
+
+    y = np.array([2, 3])
+    # [2, 13]
+
+    z = x - y
+    # [2, 2]
+    ```
+
+    > ## <font color=cyan>**z[0] == (x[0] - y[0]) == 2**
+    
+    > ## **z[1] == (x[1] - y[1]) == 2**</font>
+
+    ### A classe array da lib numpy permite que a operação subtração entre dois arrays retorne um novo array com a diferença dos valores de mesmo índice em cada array somado.
+
+***
+
+## <font color=pink size=5>**Multiplicação**</font>
+
+* ## <center> Multiplicação por um fator
+
+    ```python
+    x = np.array([10, 20])
+    fator = 2
+
+    z = x * fator
+    # [20, 40]
+    ```
+
+    > ## <font color=cyan>**z[0] == x[0] * fator == 20**
+
+    > ## **z[1] == x[1] * fator == 40**</font>
+
+
+    ***
+
+* ## <center> Multiplicação de arrays
+
+    ```python
+    x = np.array([10, 20])
+    y = np.array([5, 3])
+
+    z = x * y
+    # [50, 60]
+    ```
+
+    > ## <font color=cyan>**z[0] == x[0] * y[0] == 10 * 5 == 50**
+
+    > ## **z[1] == x[1] * y[1] == 20 * 3 == 60**</font>
+
+***
+
+## <center><font color=Orange size=6>**Broadcasting**</font>
+
+* ## Consiste em, de forma rápida e concisa, somar constantemente a um Array numpy
+
+* ## **Exemplo:**
+
+    ### <center> **De um Array1 de int's, retirar um outro Array2 com os sucessores dos elementos do primeiro**
+
+    *
+        ```python
+        Array1 = np.array([1, 2, 3])
+        # [1, 2, 3]
+
+        Array2 = Array1 + 1
+        # [2, 3, 4]
+        ```
+
+        > ### **`1, 2, 3, 1`** -> **`1+1, 2+1, 3+1`** -> **`2, 3, 4`**
+
+***
+
+## <center><font color=Orange size=6>**Universal Functions**</font>
+
+* ## Tratam-se de funções que são operadas em Arrays NumPy, muito úteis para a visualização de dados em larga escala.
+
+* ## Existem diversas
+
+    ***
+
+## <font color=pink size=5>**Média**</font>
+
+* ### Para calcular a média de um array, utiliza-se o método **`mean()`**:
+
+    ```python
+    array = np.array([10, 20, 30])
+
+    média_array = array.mean()
+    # (10 + 20 + 30) / 3 = 20
+    ```
+
+    ### <center> **`o método mean() retorna o valor médio de todos os valores do array.`**

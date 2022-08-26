@@ -1,5 +1,7 @@
 # **<center><font size="10" color="lightblue">TYPESCRIPT</font></center>**
 
+## <center> [Documentação Typescript](https://www.typescriptlang.org/docs/)
+
 ## TypeScript é um superconjunto de JavaScript, ou seja, um conjunto de ferramentas e formas mais eficientes de escrever código JavaScript, permitindo que seja estabelecida uma tipagem estática.
 
 ## O código TypeScript compila um novo, desta vez em JavaScript
