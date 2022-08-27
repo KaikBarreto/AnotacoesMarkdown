@@ -178,7 +178,7 @@
         ```jsx
         return (
             <div>
-                <button onClick=>{(e) = console.log(e)} >
+                <button onClick=>{(e) => console.log(e)} >
                     Clique aqui também
                 </button>
             </div>
@@ -442,12 +442,11 @@
         )
         }
         export default Home
-
         ```
 
         ***
 
-* ## **<font color=orange size=5>[A prop hildren]</font>**
+* ## **<font color=orange size=5>[A prop children]</font>**
 
     * ### é um recurso utilizado para quando um componente **precisa ter JSX dentro dele, porém este JSX vem do componente pai**.
 
@@ -895,10 +894,20 @@
     * ### **Exemplo:**
 
         ```jsx
+        const nome = "Kaik"
 
+        const [começaComK] = useState(nome.startsWith("K")) 
+
+        return (
+            <div>
+                {começaComK 
+                ? <p>Começa com K</p>
+                : <p>Não começa com K</p>}
+            </div>
+        )
         ```
 
-        #### <center>
+        #### <center> `Assim, caso o valor de [começaComK] seja [true], o parágrafo após [?] será renderizado, caso seja [false], o parágrafo após [:] será renderizado.`
 
     ***
 
@@ -996,17 +1005,6 @@
         getUser("https://api.github.com/users/kaikbarreto")
     }, [])
     ```
-
-***
-
-
-
-
-
-
-
-
-
 
 ***
 

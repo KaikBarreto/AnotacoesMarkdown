@@ -452,12 +452,12 @@
         > ### **`1, 2, 3, 1`** -> **`1+1, 2+1, 3+1`** -> **`2, 3, 4`**
 
 ***
-
+ 
 ## <center><font color=Orange size=6>**Universal Functions**</font>
 
 * ## Tratam-se de funções que são operadas em Arrays NumPy, muito úteis para a visualização de dados em larga escala.
 
-* ## Existem diversas
+* ## Existem diversos métodos embutidos em classes NumPy, como o **Array**, desenhados para facilitar a obtenção de informações sobre os dados.
 
     ***
 
