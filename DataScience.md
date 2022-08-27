@@ -561,8 +561,14 @@
             [31, 32, 33]
         ])
 
+    # 1. diferentes linhas, mesma coluna
+
     A[0:2, 2] # [13, 23]
     # terceiro elemento das linhas 1 e 2
+
+    # 2. diferentes colunas, mesma linha.
+
+    A[1, 0:3] # [21, 22, 23]
     ```
 
 ***
