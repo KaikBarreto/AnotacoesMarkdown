@@ -1404,20 +1404,20 @@
       <label>
         <span>Nome:</span>
         <input
-        type="text"
-        name="nome"
-        placeholder="Digite aqui seu nome"
-        onChange={(e) => setNome(e.target.value)}
+          type="text"
+          name="nome"
+          placeholder="Digite aqui seu nome"
+          onChange={(e) => setNome(e.target.value)}
         />
       </label>
 
       <label>
         <span>E-mail:</span>
         <input
-        type="text"
-        name="Email"
-        placeholder="Digite aqui seu Email"
-        onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          name="Email"
+          placeholder="Digite aqui seu Email"
+          onChange={(e) => setEmail(e.target.value)}
         />
       </label>
     )
@@ -1426,4 +1426,106 @@
 
   ***
 
-## **<font color=pink>Envio de Form</font>**
+## **<font color=pink>Envio de Formulário</font>**
+
+- ### Para enviar um form utiliza-se o evento <font color=cyan>**onSubmit**</font>, que **chamará uma função**, e nesta deve-se lembrar de parar a submissão com o método **`preventDefault`**, presente no evento.
+
+### <center> **`Exemplo:`**
+
+- ```jsx
+  import { useState } from 'react'
+
+  const Formulario = () => {
+
+    const [nome, setNome] = useState()
+
+    const handleSubmit = (evento) => {
+      // Previne que o comportamento padrão do submit seja executado.
+      evento.preventDefault()
+
+      ...
+      // ação desejada (envio para o DB, validação)
+    } 
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <label>
+          <span>Nome:</span>
+          <input
+            type="text"
+            name="nome"
+            placeholder="Digite aqui seu nome"
+            onChange={(e) => setNome(e.target.value)}
+          />
+        </label>
+      </form>
+    )
+  }
+  ```
+
+  --- 
+
+## **<font color=pink>Controlled inputs</font>**
+
+- ### <font color=cyan>Controlled inputs</font> é um recurso que nos permite mais flexibilidade nos forms de React
+
+- ### Precisamos apenas <font color=cyan>**igualar o valor ao state**</font>.
+
+- ### Um uso comum: formulários de edição, que os dados vêm do back-end, preenchendo o input mais facilmente.
+
+### <center> **`Na prática:`**
+
+- ```jsx
+  import { useState } from 'react'
+
+  const Formulario = ({user}) => {
+
+    const [nome, setNome] = useState(user ? user.name : '')
+    // Leia-se: se for passado um user, atribua user.name à variável nome. Se não, inicie-a como uma string vazia
+
+    const handleSubmit = (e) => {
+      e.preventDefault()
+
+      ...
+    } 
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <label>
+          <span>Nome:</span>
+          <input
+            type="text"
+            name="nome"
+            placeholder="Digite aqui seu nome"
+            onChange={(e) => setNome(e.target.value)}
+            value={nome}
+          />
+        </label>
+      </form>
+    )
+  }
+  ```
+
+  ---
+
+## **<font color=pink>Limpando formulários</font>**
+
+- ### Com o controller inputs, limpar o formulário fica fácil: basta <font color=cyan>**atribuir um valor de uma string vazia aos states**</font> e pronto.
+
+- ### Isso será feito após o envio, em formulários os quais o usuário precisa (ou pode) preencher novemente.
+
+### <center> **`Exemplo:`** após enviar um formulário com o nome e email, limpar este formulário
+
+- ```jsx
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    setNome("")
+    setEmail("")
+  }
+  ```
+
+  > ### Assim, o valor da variável **nome** volta a ser uma string nula.
+
+  ---
+
