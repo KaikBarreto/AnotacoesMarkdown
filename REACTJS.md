@@ -1241,11 +1241,7 @@
       const tituloVermelho = true;
 
       return (
-        <h2 className={
-            redTitle 
-            ? "titulo-vermelho" 
-            : "titulo-normal"}
-        >
+        <h2 className={redTitle ? "titulo-vermelho" : "titulo-normal"}>
           Este título terá classe dinâmica
         </h2>
       );
@@ -1265,3 +1261,39 @@
   ***
 
 - ## **<font color=pink size=5>CSS Modules</font>**
+
+  - ### O **CSS Modules** é um recurso de CSS **`scoped`**, ou seja, ele vai ser **exclusivo do componente**, não vazando os estilos para outros elementos.
+
+  - ### Seu nome segue o modelo: **`Componente.module.css`**
+
+  - ### Precisamos importá-lo também no componente, mas como um **objeto, comumente chamado styles**.
+
+  ### <center> **JSX** </center>
+
+  - ```jsx
+    import styles from "./Componente.module.css";
+
+    const Componente = () => {
+      return (
+        <div>
+          <h1 className={styles.meuTitulo}>Meu título</h1>
+        </div>
+      );
+    };
+
+    export default Componente;
+    ```
+
+  ### <center> **CSS** </center>
+
+  - ```scss
+    .meuTitulo {
+      color: pink;
+      background: white;
+    }
+    ```
+
+---
+
+## **<center><font size=7 color=orange>[Formulários no React]</font>**
+
