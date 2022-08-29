@@ -976,98 +976,7 @@
 
 ---
 
-# **<center><font color=cyan size=8>[React Router]</font>**
 
-- ## O <font color=tomato>**React Router**</font> é um pacote para mudanças de URLs da aplicação
-
-- ## Assim, é possível acessar outras páginas **sem o page reload**, trocando apenas uma parte do layout, ou seja, o que muda de página para página
-
-- ## É necessário instalar esse pacote no projeto e também realizar algumas mudanças em como o App é estruturado
-
-- ## Para instalar:
-
-  ```bash
-  npm install react-router-dom
-  ```
-
-- ## Para o bom funcionamento das rotas, é necessário importar os elementos do pacote instalado:
-
-  ```jsx
-  import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link,
-  } from "react-router-dom";
-  ```
-
-  ***
-
-## **<font size=6 color=orange>Estabelecendo rotas</font>**
-
-- ## **Elementos:**
-
-  - ### BrowserRouter (importado como Router)
-
-    - #### Engloba toda a estrutura do roteador (sistema de rotas)
-
-  - ### Routes
-
-    - #### Engloba as rotas da aplicação
-
-  - ### Route
-
-    - #### Especifica a rota em si, com seu caminho e o componente que representa
-
-    - #### path
-
-      - #### representa a URL de acesso ao componente
-
-    - #### element
-
-      - #### representa o elemento que será renderizado ao acessar o caminho da rota
-
-      - #### Recebe a declaração do componente entre chaves
-
-        ```jsx
-        <Route path="/" element={<Home />} />
-        ```
-
-  - ### Link
-
-    - #### Possui sintaxe semelhante a uma tag `<a>` do HTML, porém, no lugar do `href`, usamos o **to**
-
-      ```jsx
-      <Link to="/">Home</Link>
-      <Link to="/Sobre">Sobre</Link>
-      <Link to="/Contato">Contato</Link>
-      ```
-
-- ## **Aplicação:**
-
-  ```jsx
-  <Router>
-    <Routes>
-      <Route path="/" element={<Home />} />
-
-      <Route path="/Sobre" element={<Sobre />} />
-
-      <Route path="/Contato" element={<Contato />} />
-    </Routes>
-  </Router>
-  ```
-
-  - ### Também é possível aplicar Route Params nas rotas:
-
-    ```jsx
-    <Route path="/pessoa/:id" element={<Pessoa />} />
-    ```
-
-    - ### Assim, há uma rota para cada pessoa, baseada no ID passado na rota.
-
-    - ### De forma que, ao acessar `"/pessoa/10"`, encontra-se a pessoa de ID 10.
-
-  ***
 
 ## **<font size=6 color=orange>[Imagens]</font>**
 
@@ -1527,5 +1436,101 @@
 
   > ### Assim, o valor da variável **nome** volta a ser uma string nula.
 
-  ---
+---
 
+## **<center><font size=7 color=orange>[Requisições HTTP com React]</font>**
+
+---
+
+# **<center><font color=cyan size=8>[React Router]</font>**
+
+- ## O <font color=tomato>**React Router**</font> é um pacote para mudanças de URLs da aplicação
+
+- ## Assim, é possível acessar outras páginas **sem o page reload**, trocando apenas uma parte do layout, ou seja, o que muda de página para página
+
+- ## É necessário instalar esse pacote no projeto e também realizar algumas mudanças em como o App é estruturado
+
+- ## Para instalar:
+
+  ```bash
+  npm install react-router-dom
+  ```
+
+- ## Para o bom funcionamento das rotas, é necessário importar os elementos do pacote instalado:
+
+  ```jsx
+  import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+  } from "react-router-dom";
+  ```
+
+  ***
+
+## **<font size=6 color=orange>Estabelecendo rotas</font>**
+
+- ## **Elementos:**
+
+  - ### BrowserRouter (importado como Router)
+
+    - #### Engloba toda a estrutura do roteador (sistema de rotas)
+
+  - ### Routes
+
+    - #### Engloba as rotas da aplicação
+
+  - ### Route
+
+    - #### Especifica a rota em si, com seu caminho e o componente que representa
+
+    - #### path
+
+      - #### representa a URL de acesso ao componente
+
+    - #### element
+
+      - #### representa o elemento que será renderizado ao acessar o caminho da rota
+
+      - #### Recebe a declaração do componente entre chaves
+
+        ```jsx
+        <Route path="/" element={<Home />} />
+        ```
+
+  - ### Link
+
+    - #### Possui sintaxe semelhante a uma tag `<a>` do HTML, porém, no lugar do `href`, usamos o **to**
+
+      ```jsx
+      <Link to="/">Home</Link>
+      <Link to="/Sobre">Sobre</Link>
+      <Link to="/Contato">Contato</Link>
+      ```
+
+- ## **Aplicação:**
+
+  ```jsx
+  <Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+
+      <Route path="/Sobre" element={<Sobre />} />
+
+      <Route path="/Contato" element={<Contato />} />
+    </Routes>
+  </Router>
+  ```
+
+  - ### Também é possível aplicar Route Params nas rotas:
+
+    ```jsx
+    <Route path="/pessoa/:id" element={<Pessoa />} />
+    ```
+
+    - ### Assim, há uma rota para cada pessoa, baseada no ID passado na rota.
+
+    - ### De forma que, ao acessar `"/pessoa/10"`, encontra-se a pessoa de ID 10.
+
+  ***
