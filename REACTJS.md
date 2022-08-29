@@ -1297,3 +1297,133 @@
 
 ## **<center><font size=7 color=orange>[Formulários no React]</font>**
 
+- ## Formulários são peças fundamentais para uma aplicação web eficiente, e não é nada diferente quando trata-se de React.
+
+- ### No React também utiliza-se a <font color=cyan>**tag form**</font> para estruturar formulários.
+
+- ### As **labels** dos **inputs** contém o atributo <font color=cyan>**htmlFor**</font>, que deve ter o valor do **name** do input.
+
+- ### Não utiliza-se action, pois o processamento será feito de forma assíncrona.
+
+  ***
+
+## <center> **`Exemplo:`**
+
+- ```jsx
+  const Formulario = () => {
+    return (
+      <form>
+        <div>
+          <label htmlFor="nome">Nome:</label>
+
+          <input type="text" name="nome" placeholder="Digite seu nome" />
+
+          <input type="submit" value="enviar" />
+        </div>
+      </form>
+    );
+  };
+  ```
+
+  ***
+
+## **<font color=pink>Label envolvendo input</font>**
+
+- ### Em React um padrão comum é a **`tag envolvendo o input`**. Isto faz com que o atributo **htmlFor** se torne **opcional**, **simplificando a estrutura HTML**, sem perder a semântica.
+
+### <center> **`Exemplo:`**
+
+- ```jsx
+  const Formulario = () => {
+    return (
+      <label>
+        <span>Nome:</span>
+        <input type="text" name="nome" placeholder="Digite aqui seu nome" />
+      </label>
+    );
+  };
+  ```
+
+  ***
+
+## **<font color=pink>Gerenciamento de dados de input / Manipulação de Valores</font>**
+
+- ### Para manipular os valores dos inputs utiliza-se o <font color=cyan>**hook useState**</font>. Ou seja, pode-se armazenar o valor na variável e <font color=cyan>**e utilizar o set para alterar o valor**</font>.
+
+- ### Para este fim, criar-se-á uma função (geralmente no padrão `handleAlgumaCoisa`) para alterar o valor no evento <font color=cyan>**onChange**</font>.
+
+- ### Desta maneira, o código fica mais fácil de trabalhar em níveis mais avançados, como envio dos dados para BD e validação.
+
+### <center> **`Exemplo:`**
+
+- ```jsx
+  import { useState } from "react";
+
+  const Formulario = () => {
+    const [nome, setNome] = useState();
+
+    const handleNome = (evento) => {
+      setNome(evento.target.value);
+    };
+
+    return (
+      <label>
+        <span>Nome:</span>
+        <input
+          type="text"
+          name="nome"
+          placeholder="Digite aqui seu nome"
+          onChange={handleNome}
+        />
+      </label>
+    );
+  };
+  ```
+
+  > ### Dessa forma, a cada mudança realizada no input, como um dígito, a variável **name** recebe o novo valor.
+
+  ***
+
+## **<font color=pink>Alteração de state inline</font>**
+
+- ### Visando simplificar a manipulação quando hão diversos inputs, pode-se criar uma **função inline no onChange**.
+
+- ### Esta função fará a **alteração do valor do state** com o método set, da mesma forma que a função isolada.
+
+### <center> **`Exemplo:`**
+
+- ```jsx
+  import { useState } from 'react'
+
+  const Formulario = () => {
+
+    const [nome, setNome] = useState()
+    const [email, setEmail] = useState()
+
+    return (
+      <label>
+        <span>Nome:</span>
+        <input
+        type="text"
+        name="nome"
+        placeholder="Digite aqui seu nome"
+        onChange={(e) => setNome(e.target.value)}
+        />
+      </label>
+
+      <label>
+        <span>E-mail:</span>
+        <input
+        type="text"
+        name="Email"
+        placeholder="Digite aqui seu Email"
+        onChange={(e) => setEmail(e.target.value)}
+        />
+      </label>
+    )
+  }
+  ```
+
+  ***
+
+## **<font color=pink>Envio de Form</font>**
