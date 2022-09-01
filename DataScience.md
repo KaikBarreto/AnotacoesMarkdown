@@ -641,4 +641,7 @@
     
     ***
 
-## <font color=orange>**Subtração, multiplicação etc. funcionarão da mesma forma, aplicando a regra para cada elemento de mesma posição dentro da matriz.**</font>
+## <font color=pink>**Subtração, multiplicação etc. funcionarão da mesma forma, aplicando a regra para cada elemento de mesma posição dentro da matriz.**</font>
+
+***
+
