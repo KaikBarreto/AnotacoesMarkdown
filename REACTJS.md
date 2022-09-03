@@ -95,7 +95,7 @@
   - ### Arquivos JSX não precisam ser importados com sua extensão ".jsx"
 
     ```jsx
-    import Navbar from "./navbar";
+    import Navbar from "./Navbar";
     ```
 
   - ### Para definir uma classe no retorn HTML do JSX, o react utiliza-se de "className" no lugar do convencional "class":
@@ -193,9 +193,9 @@
       ```jsx
       const parOuImpar = function (numero) {
         if (numero % 2 == 0) {
-          return <p>Par</p>;
+          return <span>Par</span>;
         } else if (numero % 2 == 1) {
-          return <p>Ímpar</p>;
+          return <span>Ímpar</span>;
         }
       };
       ```
@@ -237,8 +237,6 @@
   - ### Trata-se de uma pequena regra sobre como deve ser o retorno dos componentes <kbd><font color=cyan>.jsx</font></kbd>
 
   - ### Expressões JSX pode ter apenas um único elemento filho. (Uma tag vazia ou uma div encapsulando todo o resto servem)
-
-  - ### <font color=lime>Certo:</font>
 
     ```jsx
     function Home() {
@@ -574,7 +572,7 @@
     export default Home;
     ```
 
-    - ### \* Note-se que a importação <font color=lime>[import React, { useState } from 'react']</font> é indispensável para a utilização do estado
+    - ### Note-se que a importação <font color=lime>[import React, { useState } from 'react']</font> é indispensável para a utilização do estado
 
     - ### Resultado: O "{personName} do H1 será atualizado para o valor do input a cada vez que ele for alterado.
 
@@ -615,7 +613,7 @@
 
 - ## **<font color=orange size=5>[useState]</font>**
 
-  - ### O **useState** é o mais utilizado e serve para **gerenciar o estado de algum dado**, sendo esta a única forma de alterar uma varíavel e re-renderizá-la no React.
+  - ### O **useState** é o hook mais utilizado e serve para **gerenciar o estado de algum dado**, sendo esta a única forma de alterar uma varíavel e re-renderizá-la no React.
 
   - ### Para guardar o dado, utilizamos o retorno da função useState( ), que é uma lista com a variável e uma função para alterar o estado da variável.
 
@@ -649,7 +647,7 @@
 
   - ### Isso é muito utilizado para **modificar listas**, transformando o valor antigo em um novo valor.
 
-  - ### O **primeiro argumento** de um **set** sempre será o **previous state**, ou seja, o estado prévio (anterior) do dado.
+  - ### O **primeiro argumento** de um **set** sempre será o **previous state**, ou seja, o estado prévio (anterior) do dado, geralmente chamado simplesmente **`state`**, porém pode ser qualquer nome.
 
   - ### **Exemplos:**
 
@@ -659,12 +657,12 @@
     // iniciando uma variável numero com o estado 0.
     const [numero, setNumero] = useState(0);
 
-    setNumero((prevNumero) => {
-      return prevNumero + 1;
+    setNumero((state) => {
+      return state + 1;
     });
     ```
 
-    #### <center>O set da variável número recebe como parâmetro uma outra função que usa o valor original do número para retornar seu sucessor e alterar o estado para este novo número.
+    #### <center>O set da variável número recebe como parâmetro uma outra função que usa o valor original do número (state) para retornar seu sucessor (state + 1) e alterar o estado para este novo número.
 
     ***
 
@@ -680,9 +678,12 @@
       "Maria",
     ]);
 
-    setNomes((prevNomes) => {
-      return prevNomes.filter((nome) => nome.startsWith("M"));
+    setNomes((actualNomes) => {
+      return actualNomes.filter((nome) => nome.startsWith("M"));
     });
+
+    console.log(nomes);
+    // ["Matheus", "Maicon", "Maria"]
     ```
 
     #### <center>O set da variável nomes recebe como parâmetro uma outra função que usa o array original de nomes para retornar um novo array apenas com nomes que comecem com "M".
@@ -802,7 +803,9 @@
         return <div>
             <ul>
                 {frutas.map((fruta) => (
-                    <li>{item}</li>
+                    <li key={frutas.indexOf(fruta}>
+                      {fruta}
+                    </li>
                 )}
             </ul>
         </div>
@@ -834,6 +837,26 @@
     ```
 
     #### <center> Neste caso, para cada carro no array de carros, é renderizado um **li (list item)**, cuja **key** é o **ID** do carro, contendo um componente **Carro** que recebe as props **marca** e **modelo**.
+
+  ***
+
+- ## **<font color=orange size=5>[Key Prop]</font>**
+
+  - ### Ao utilizar uma estrutura de repetição **_[.map(), .forEach() etc.]_** para gerar componentes dinâmicos, há a necessidade de acrescentar uma propriedade chamada "key", que seja única, ou seja, que não se repita.
+
+  - ### A necessidade da atribuição desta propriedade é para que o react use esta chave para identificar os elementos da lista corretamente
+
+  - ### **Exemplo:**
+
+    #### <center> um Card **para cada fruta no array de frutas**, onde a key prop é um ID de cada fruta e a name prop é o nome de cada fruta.
+
+    ```jsx
+    {
+      frutas.map((fruta) => <Card key={fruta.ID} name={fruta.nome} />);
+    }
+    ```
+
+    - ### Neste exemplo, a chave é o próprio horário, que, neste caso, não se repetirá entre as gerações de componentes
 
   ***
 
@@ -885,26 +908,6 @@
 
   ***
 
-- ## **<font color=orange size=5>[Key Prop]</font>**
-
-  - ### Ao utilizar uma estrutura de repetição **_[.map(), .forEach() etc.]_** para gerar componentes dinâmicos, há a necessidade de acrescentar uma propriedade chamada "key", que seja única, ou seja, que não se repita.
-
-  - ### A necessidade da atribuição desta propriedade é para que o react use esta chave para identificar os elementos da lista corretamente
-
-  - ### **Exemplo:**
-
-    #### <center> um Card **para cada fruta no array de frutas**, onde a key prop é um ID de cada fruta e a name prop é o nome de cada fruta.
-
-    ```jsx
-    {
-      frutas.map((fruta) => <Card key={fruta.ID} name={fruta.nome} />);
-    }
-    ```
-
-    - ### Neste exemplo, a chave é o próprio horário, que, neste caso, não se repetirá entre as gerações de componentes
-
-  ***
-
 ## <center>**<font color=orange size=7>[Hooks]</font>**
 
 - ### São recursos do React que têm diversas funções, como, por exemplo, guardar e alterar o estado de algum dado na aplicação etc.
@@ -920,63 +923,6 @@
 - ### Hooks precisam ser importados e são usados em praticamente toda aplicação React atual.
 
 ---
-
-- ## **<font color=orange size=5>[Consumindo API]</font>**
-
-  ```jsx
-  import React, { useState, useEffect } from 'react'
-
-  function Home() {
-      const [user, setUser] = useState({ name: '', avatar: '' })
-
-      useEffect(() => {
-          fetch("https://api.github.com/users/kaikbarreto")
-              .then(response => response.json())
-              .then(data => {
-                  setUser({
-                      name: data.name,
-                      avatar: data.avatar_url
-                  })
-              })
-      }, [])
-
-      return (
-          <header>
-              <h1>Lista de presença</h1>
-              <div>
-                  <strong>{user.name}</strong>
-                  <img src={user.avatar} alt="Foto de perfil" />
-              </div>
-          </header>
-      )
-
-  export default Home
-  ```
-
-  ***
-
-- ## **<font color=orange size=5>[useEffect Async]</font>**
-
-  ```jsx
-  useEffect(() => {
-    async function getUser(userUrl) {
-      const url = userUrl;
-      const response = await fetch(url);
-      const data = await response.json();
-
-      setUser({
-        name: data.name,
-        avatar: data.avatar_url,
-      });
-    }
-
-    getUser("https://api.github.com/users/kaikbarreto");
-  }, []);
-  ```
-
----
-
-
 
 ## **<font size=6 color=orange>[Imagens]</font>**
 
@@ -1093,7 +1039,6 @@
   - ```jsx
     const App = () => {
       return (
-        {/* css inline */}
         <p
           style={{
             color: "blue",
@@ -1150,7 +1095,7 @@
       const tituloVermelho = true;
 
       return (
-        <h2 className={redTitle ? "titulo-vermelho" : "titulo-normal"}>
+        <h2 className={tituloVermelho ? "titulo-vermelho" : "titulo-normal"}>
           Este título terá classe dinâmica
         </h2>
       );
@@ -1354,7 +1299,7 @@
 
       ...
       // ação desejada (envio para o DB, validação)
-    } 
+    }
 
     return (
       <form onSubmit={handleSubmit}>
@@ -1372,7 +1317,7 @@
   }
   ```
 
-  --- 
+  ***
 
 ## **<font color=pink>Controlled inputs</font>**
 
@@ -1396,7 +1341,7 @@
       e.preventDefault()
 
       ...
-    } 
+    }
 
     return (
       <form onSubmit={handleSubmit}>
@@ -1415,7 +1360,7 @@
   }
   ```
 
-  ---
+  ***
 
 ## **<font color=pink>Limpando formulários</font>**
 
@@ -1427,14 +1372,68 @@
 
 - ```jsx
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    setNome("")
-    setEmail("")
-  }
+    setNome("");
+    setEmail("");
+  };
   ```
 
   > ### Assim, o valor da variável **nome** volta a ser uma string nula.
+
+---
+
+## **<center><font size=7 color=orange>[API com React]</font>**
+
+```jsx
+import React, { useState, useEffect } from 'react'
+
+function Home() {
+    const [user, setUser] = useState({ name: '', avatar: '' })
+
+    useEffect(() => {
+        fetch("https://api.github.com/users/kaikbarreto")
+            .then(response => response.json())
+            .then(data => {
+                setUser({
+                    name: data.name,
+                    avatar: data.avatar_url
+                })
+            })
+    }, [])
+
+    return (
+        <header>
+            <h1>Lista de presença</h1>
+            <div>
+                <strong>{user.name}</strong>
+                <img src={user.avatar} alt="Foto de perfil" />
+            </div>
+        </header>
+    )
+
+export default Home
+```
+
+- ## **<font color=orange size=5>[useEffect Async]</font>**
+
+  ```jsx
+  const [user, setUser] = useState({ name: "", avatar: "" });
+
+  async function getUser(userUrl) {
+    const response = await fetch(userUrl);
+    const data = await response.json();
+
+    setUser({
+      name: data.name,
+      avatar: data.avatar_url,
+    });
+  }
+
+  useEffect(() => {
+    getUser("https://api.github.com/users/kaikbarreto");
+  }, []);
+  ```
 
 ---
 
