@@ -1439,7 +1439,136 @@ export default Home
 
 ## **<center><font size=7 color=orange>[Requisições HTTP com React]</font>**
 
+### <center> Para fins de aprendizado, far-se-á uso do pacote NPM **`json server`**, que permite simular uma API (backend), porém o processo é o mesmo para uma API real, mudando apenas os endpoints.
+
 ---
+
+## <font color=pink size=6>**A importância do useEffect nas requisições http com React**</font>
+
+- ## O useEffect **possibilita que determinada ação seja executada apenas uma vez**.
+
+- ## Isto é interessante pois os componentes estão sempre **re-renderizando**, e as vezes é necessário ações que só aconteçam uma vez.
+
+- ## O useEffect deve receber em seu <font color=cyan>**array de dependências**</font> os dados que executem a função de maneira automática.
+
+## <center> **`O useEffect sempre estará presente nas requisições assíncronas.`**
+
+---
+
+## <font color=pink size=6>**Resgatando dados da API com React**</font>
+
+- ## Para resgatar os dados de uma API com React, utiliza-se uma variada gama de recursos, como:
+
+  - ### Um local para salvá-los (**`useState`**)
+
+  - ### Renderizar a chamada à API uma só vez (**`useEffect`**)
+
+  - ### Um meio de fazer a requisição assíncrona (**`Fetch API`**)
+
+## <center> **Resgatando dados na prática:**
+
+```jsx
+import { useState, useEffect } from 'react'
+
+function App() {
+
+  const [products, setProducts] = useState([])
+
+  const url = "http://localhost:3000/products"
+
+  useEffect(async () => {
+    const response = await fetch(url)
+    const data = await response.json()
+    setProducts(data)
+  }, [])
+```
+
+### Agora, os dados da API ficam guardados na variável **<font color=cyan>products</font>**.
+
+### <center> Num desenvolvimento real, no lugar de `"http://localhost:3000/products"`, a url seria o domínio da API
+
+## <center> **Consumindo os dados**
+
+```jsx
+...
+return (
+  <div className="App">
+    <h1>Lista de Produtos</h1>
+
+    <ul>
+        {products.map(product => (
+          <li key={product.id}>
+            {product.name} - R${product.price}
+          </li>
+        )
+        )}
+      </ul>
+  </div>
+)
+```
+
+## <font color=pink size=6>**Adicionando dados À API com React**</font>
+
+- ## Para adicionar um dado é preciso resgatar os dados do formulário com o **`useState`** , reuní-los em uma **função após o submit do formulário** (onSubmit) e enviar um request de **POST** para a nossa API.
+
+- ## O processo é semelhante com o resgate de dados, porém, desta vez, enviando.
+
+## <center> **Adicionando dados na prática:**
+
+```jsx
+...
+url = "http://localhost:3000/products"
+
+const [name, setName] = useState("")
+const [price, setPrice] = useState("")
+
+const handleSubmit = async (e) => {
+  e.preventDefault()
+
+  const newProduct = {
+    name,
+    price
+  }
+
+  const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newProduct)
+    })
+}
+
+return (
+  <div className="add-product">
+      <form onSubmit={handleSubmit}>
+        <label>
+          Nome:
+          <input
+            type="text"
+            value={name}
+            name="name"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </label>
+
+        <label>
+          Preço:
+          <input
+            type="number"
+            value={price}
+            name="price"
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </label>
+
+        <input type="submit" value="Criar">
+      </form>
+  </div>
+)
+```
+
+<!--
 
 # **<center><font color=cyan size=8>[React Router]</font>**
 
@@ -1532,4 +1661,4 @@ export default Home
 
     - ### De forma que, ao acessar `"/pessoa/10"`, encontra-se a pessoa de ID 10.
 
-  ***
+  \*\*\* -->

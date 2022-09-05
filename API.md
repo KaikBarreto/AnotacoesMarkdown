@@ -312,8 +312,6 @@
                     "Content-type": "application/json; charset=UTF-8"
                 }
             })
-                .then(response => response.json())
-                .then(data => alertAPI.innerText = data)
                 .catch(error => console.error(error))
         }
 
