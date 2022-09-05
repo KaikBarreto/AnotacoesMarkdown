@@ -1537,6 +1537,8 @@ const handleSubmit = async (e) => {
       },
       body: JSON.stringify(newProduct)
     })
+
+    setProducts([...products, newProduct])
 }
 
 return (
