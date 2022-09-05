@@ -1476,10 +1476,15 @@ function App() {
 
   const url = "http://localhost:3000/products"
 
-  useEffect(async () => {
-    const response = await fetch(url)
-    const data = await response.json()
-    setProducts(data)
+  useEffect(() => {
+
+    const fetchData = () => {
+      const response = await fetch(url)
+      const data = await response.json()
+      setProducts(data)
+    }
+
+    fetchData()
   }, [])
 ```
 
@@ -1538,7 +1543,11 @@ const handleSubmit = async (e) => {
       body: JSON.stringify(newProduct)
     })
 
-    setProducts([...products, newProduct])
+    const addedProduct = await res.json()
+
+    setProducts((prevProducts) => [...prevProducts, addedProduct])
+    setName("")
+    setPrice("")
 }
 
 return (
@@ -1570,7 +1579,124 @@ return (
 )
 ```
 
-<!--
+---
+
+## <font color=pink size=6>**Custom Hook para o fetch**</font>
+
+- ## É normal dividir funções que podem ser reaproveitadas em **hooks**, sendo esta técnica chamada de <font color=cyan>**custom hooks**</font>.
+
+- ## Por exemplo, no caso que está sendo tratado, é possível criar um para o resgate de dados.
+
+- ## Os custom hooks geralmente ficam numa pasta <font color=cyan>**hooks**</font>, seguem o padrão `use+NomeDoHook` e sua criação é semelhante à de uma função comum a ser exportada.
+
+## <center> <font color=orange size=6>**Exemplo: hook useFetch**</font>
+
+```jsx
+import { useState, useEffect } from "react";
+
+export const useFetch = (url) => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(url);
+      const json = await res.json();
+
+      setData(json);
+    };
+
+    fetchData();
+  }, [url]);
+
+  return { data };
+};
+```
+
+## <center> **`De volta ao App.jsx:`**
+
+```jsx
+import { useFetch } from "./hooks/useFetch";
+
+const url = "http://localhost:3000/products";
+
+function App() {
+  const { data: items } = useFetch(url);
+
+  return (
+    <ul>
+      {items &&
+        items.map((product) => (
+          <li key={product.id}>
+            {product.name} - R${product.price}
+          </li>
+        ))}
+    </ul>
+  );
+}
+```
+
+---
+
+## <font color=pink size=6>**Estado de Loading**</font>
+
+- ## Quando fazem-se requisições para APIs <font color=cyan>**é normal que haja um intervalo de loading entre a requisição e o recebimento**</font> da resposta.
+
+- ## Esta é uma técnica que pode ser feita, inclusive, dentro do <font color=yellow>**custom hook**</font>, identificando quando começa e termina este estado.
+
+## <center> <font color=lightblue size=6>**Exemplo:**</font>
+
+```jsx
+// dentro do método de fetch do hook, adicionar o loading:
+
+export const useFetch = (url) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // loading
+      setLoading(true);
+
+      const res = await fetch(url);
+
+      const json = res.json();
+
+      setData(json);
+
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [url, callFetch]);
+};
+```
+
+### <center> Ao iniciar o método assíncrono **`fetchData`**, o loading recebe o valor de **`true`**, e ao terminar todas as operações assíncronas, novamente volta ao seu estado de **`false`**.
+
+- ### Dessa forma, é possível condicionar a renderização de um componente de loading ao estado da variável **`loading`**.
+
+## <center> **Exemplo:**
+
+```jsx
+{
+  loading && <Loading />;
+}
+
+{!loading && (
+    <ul>
+      {items &&
+        items.map((product) => (
+          <li key={product.id}>
+            {product.name} - R${product.price}
+          </li>
+        ))}
+    </ul>
+  )}
+```
+### <center> Isso garante que a lista só seja renderizada quando o loading for false, e também a volta, onde o **`loading aparece enquanto os dados da lista estão sendo requisitados de forma assíncrona`**.
+
+
+
 
 # **<center><font color=cyan size=8>[React Router]</font>**
 
@@ -1663,4 +1789,4 @@ return (
 
     - ### De forma que, ao acessar `"/pessoa/10"`, encontra-se a pessoa de ID 10.
 
-  \*\*\* -->
+
