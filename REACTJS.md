@@ -1682,7 +1682,8 @@ export const useFetch = (url) => {
   loading && <Loading />;
 }
 
-{!loading && (
+{
+  !loading && (
     <ul>
       {items &&
         items.map((product) => (
@@ -1691,20 +1692,25 @@ export const useFetch = (url) => {
           </li>
         ))}
     </ul>
-  )}
+  );
+}
 ```
+
 ### <center> Isso garante que a lista só seja renderizada quando o loading for false, e também a volta, onde o **`loading aparece enquanto os dados da lista estão sendo requisitados de forma assíncrona`**.
-
-
-
 
 # **<center><font color=cyan size=8>[React Router]</font>**
 
-- ## O <font color=tomato>**React Router**</font> é um pacote para mudanças de URLs da aplicação
+- ## O <font color=tomato>**React Router**</font> é um pacote para a criação de rotas **`(URL's)`** da aplicação
 
 - ## Assim, é possível acessar outras páginas **sem o page reload**, trocando apenas uma parte do layout, ou seja, o que muda de página para página
 
-- ## É necessário instalar esse pacote no projeto e também realizar algumas mudanças em como o App é estruturado
+  ***
+
+- ## Isto permite que as SPA's tenham múltiplas páginas, e habilita diversos recursos, como **`Redirect`**</font>, **`Nested Routes`**, **`Not Found Routes`**.
+
+  ***
+
+- ## A instalação e utilização do **React Router** requer que a **estrutura JSX** seja levemente diferente
 
 - ## Para instalar:
 
@@ -1727,66 +1733,72 @@ export const useFetch = (url) => {
 
 ## **<font size=6 color=orange>Estabelecendo rotas</font>**
 
-- ## **Elementos:**
+## **Elementos:**
 
-  - ### BrowserRouter (importado como Router)
+- ### <font color=orange size=5>BrowserRouter</font> (importado como Router)
 
-    - #### Engloba toda a estrutura do roteador (sistema de rotas)
+  - #### Engloba toda a estrutura do roteador (sistema de rotas)
 
-  - ### Routes
+  ***
 
-    - #### Engloba as rotas da aplicação
+- ### <font color=orange size=5>Routes</font>
 
-  - ### Route
+  - #### Engloba as **rotas** da aplicação
 
-    - #### Especifica a rota em si, com seu caminho e o componente que representa
+  ***
 
-    - #### path
+- ### <font color=orange size=5>Route</font>
 
-      - #### representa a URL de acesso ao componente
+  #### Especifica **a rota em si**, com seu caminho e o componente que representa
 
-    - #### element
+  - #### **path**
 
-      - #### representa o elemento que será renderizado ao acessar o caminho da rota
+    - #### representa a **URL de acesso** ao componente
 
-      - #### Recebe a declaração do componente entre chaves
+  - #### **element**
 
-        ```jsx
-        <Route path="/" element={<Home />} />
-        ```
+    - #### representa o **elemento que será renderizado** ao acessar o caminho da rota
 
-  - ### Link
-
-    - #### Possui sintaxe semelhante a uma tag `<a>` do HTML, porém, no lugar do `href`, usamos o **to**
-
-      ```jsx
-      <Link to="/">Home</Link>
-      <Link to="/Sobre">Sobre</Link>
-      <Link to="/Contato">Contato</Link>
-      ```
-
-- ## **Aplicação:**
-
-  ```jsx
-  <Router>
-    <Routes>
-      <Route path="/" element={<Home />} />
-
-      <Route path="/Sobre" element={<Sobre />} />
-
-      <Route path="/Contato" element={<Contato />} />
-    </Routes>
-  </Router>
-  ```
-
-  - ### Também é possível aplicar Route Params nas rotas:
+    - #### Recebe a declaração do componente **entre chaves**
 
     ```jsx
-    <Route path="/pessoa/:id" element={<Pessoa />} />
+    <Route path="/" element={<Home />} />
     ```
 
-    - ### Assim, há uma rota para cada pessoa, baseada no ID passado na rota.
+    ***
 
-    - ### De forma que, ao acessar `"/pessoa/10"`, encontra-se a pessoa de ID 10.
+- ### <font color=orange size=5>Link</font>
 
+  - #### Possui sintaxe semelhante a uma tag `<a>` do HTML, porém, no lugar do `href`, usamos o **to**
 
+    ```jsx
+    <Link to="/">Home</Link>
+    <Link to="/Sobre">Sobre</Link>
+    <Link to="/Contato">Contato</Link>
+    ```
+
+  ***
+
+## <center> **`Aplicação:`**
+
+```jsx
+<Router>
+  <Routes>
+    <Route path="/" element={<Home />} />
+
+    <Route path="/Sobre" element={<Sobre />} />
+
+    <Route path="/Contato" element={<Contato />} />
+  </Routes>
+</Router>
+```
+
+### Também é possível aplicar Route Params nas rotas:
+
+```jsx
+<Route path="/pessoa/:id" element={<Pessoa />} />
+```
+
+- ### Assim, há uma rota para cada pessoa, baseada no ID passado na rota.
+
+- ### De forma que, ao acessar `"/pessoa/10"`, encontra-se a pessoa de ID 10.
