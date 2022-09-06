@@ -1702,7 +1702,7 @@ export const useFetch = (url) => {
 
 ---
 
-# **<center><font color=cyan size=8>[React Router]</font>**
+# **<center><font color=#22bbff size=8>[React Router]</font>**
 
 - ## O <font color=tomato>**React Router**</font> é um pacote para a criação de rotas **`(URL's)`** da aplicação
 
@@ -2068,6 +2068,149 @@ function Formulário() {
 
 ### <center> `Dessa forma, ao acessar a rota "/company", o usuário será redirecionado para "/about"`
 
-  ---
+---
 
-# **<center><font color=cyan size=8>[Context API do React]</font>**
+# **<center><font color=#22bbff size=8>[Context API do React]</font>**
+
+- ## Trata-se de um recurso que **facilita o _compartilhamento_ de um estado entre componentes**.
+
+  - ### Ou seja, quando são necessários <font color=cyan>**dados 'globais'**</font>, provavelmente precisa-se usar o Context.
+
+- ## <font color=cyan>**O Context precisa encapsular os componentes**</font> que receberão seus valores, geralmente é posto no **_App.jsx_** ou no **_index.jsx_**.
+
+- ## Os contextos, por convenção, geralmente ficam na pasta <font color=cyan>**_context_**</font>
+
+  ***
+
+## <font color=orange size=6>**[Criação do Context]**</font>
+
+- ## Antes de tudo, é necessário **criar o Context**, e este arquivo deve sempre ter **_a primeira letra maiúscula_** no nome, e geralmente termina em `'context'`:
+
+  - ### **_<font color=cyan>AlgumContext.jsx</font>_**
+
+- ## Onde o valor do contexto for utilizado, ele **_deve ser importado_**
+
+## <center> <font size=5 color=orange> **Criação do contexto na prática:**</font>
+
+- ### Arquivo **`CounterContext.jsx`**, na pasta **context**:
+
+  ```jsx
+  import { createContext, useState } from "react";
+
+  export const CounterContext = createContext();
+  ```
+
+  ***
+
+## <font color=orange size=6>**[Criação do Provider]**</font>
+
+- ## O Provider vai <font color=lightblue>**_delimitar onde o contexto é utilizado_**</font>.
+
+- ## Criar-se-á uma espécie de componente com a <font color=lightblue>**_prop children_**</font> e este Provider deve <font color=lightblue>**_encapsular os demais componentes_**</font> em que precisa-se consultar ou alterar o valor.
+
+- ## Geralmente ele fica em <font color=lightblue>**_App.jsx_**</font> ou em <font color=lightblue>**_index.jsx_**</font>, daí pode-se <font color=lightblue>**_compartilhar o valor do contexto_**</font> em todos os componentes.
+
+## <center> <font size=5 color=orange> **Criação do provider na prática:**</font>
+
+- ### Ainda no arquivo **`CounterContext.jsx`**, na pasta **context**:
+
+  ```jsx
+  // criação do Context...
+  import { createContext, useState } from "react";
+  export const CounterContext = createContext();
+
+  // criação do Provider...
+  export const CounterContextProvider = ({ children }) => {
+    const [counter, setCounter] = useState(5);
+
+    return (
+      <CounterContext.Provider value={{ counter, setCounter }}>
+        {children}
+      </CounterContext.Provider>
+    );
+  };
+  ```
+
+  > ### Neste caso, o **CounterContext** está sendo utilizado para **gerenciar o estado** da variável **_counter_**.
+
+- ### No arquivo **`index.jsx`\***:
+
+  ```jsx
+  // ... imports
+
+  import { CounterContextProvider } from "./context/CounterContext";
+
+  ReactDOM.createRoot(document.getElementById("root")).render(
+    <React.StrictMode>
+      <CounterContextProvider>
+        <App />
+      </CounterContextProvider>
+    </React.StrictMode>
+  );
+  ```
+
+  ### <center> Note-se que o Provider do contexto CounterContext envolve o componente App, ou seja: **_todos os componentes filhos de App poderão utilizar o valor de 'counter'_**
+
+  ***
+
+## <font color=orange size=6>**[Utilização do Contexto]**</font>
+
+- ## Uma vez criado o contexto, <font color=lightblue>**_todos os componentes filhos (children), poderão acessar este valor 'global'_**</font>, como, por exemplo, o componente **Home**.
+
+- ## Para **_consumir_** o valor de um contexto, é necessário importá-lo e também um hook específico do react para isso, o <font color=lightblue>**_useContext_**</font>, que recebe como parâmetro o contexto a ser consumido.
+
+## <center> <font size=5 color=orange> **Na prática:**</font>
+
+- ## <center> **_`Home.jsx`_**
+
+  ```jsx
+  import { useContext } from "react";
+  import CounterContext from "../../context/CounterContext";
+
+  const Home = () => {
+    const { counter } = useContext(CounterContext);
+
+    return (
+      <div>
+        <h1>Home</h1>
+        <p>O valor que veio do contador do contexto é: {counter}</p>
+      </div>
+    );
+  };
+
+  export default Home;
+  ```
+
+  ***
+
+## <font color=orange size=6>**[Alteração do Context]**</font>
+
+- ## Para alterar o valor do contexto <font color=cyan>**_precisa-se criar um componente que utilize a função da mudança de contexto_**</font>.
+
+- ## Esta mudança ocorrerá no Context e <font color=cyan>**_poderá ser consumida por todos os componentes_**</font> que recebem o contexto.
+
+## <center> <font size=5 color=orange> **Alteração de contexto na prática:**</font>
+
+- ## <center> **_`ChangeCounter.jsx`_**
+
+  ```jsx
+  import { useContext } from "react";
+  import { CounterContext } from "../../context/CounterContext";
+
+  const ChangeCounter = () => {
+    const { counter, setCounter } = useContext(CounterContext);
+
+    return (
+      <div>
+        <button onClick={() => setCounter(counter + 1)}>
+          Adicionar +1 ao counter
+        </button>
+      </div>
+    );
+  };
+  export default ChangeCounter;
+  ```
+
+  ### <center> Assim, a cada clique no botão, é disparada uma função que acrescenta +1 ao **_counter_**, e **_essa alteração é passada para todos os componentes que consomem este contexto_**.
+
+---
