@@ -1698,6 +1698,8 @@ export const useFetch = (url) => {
 
 ### <center> Isso garante que a lista só seja renderizada quando o loading for false, e também a volta, onde o **`loading aparece enquanto os dados da lista estão sendo requisitados de forma assíncrona`**.
 
+---
+
 # **<center><font color=cyan size=8>[React Router]</font>**
 
 - ## O <font color=tomato>**React Router**</font> é um pacote para a criação de rotas **`(URL's)`** da aplicação
@@ -1793,12 +1795,48 @@ export const useFetch = (url) => {
 </Router>
 ```
 
-### Também é possível aplicar Route Params nas rotas:
+## **<font size=6 color=orange>Rotas dinâmicas</font>**
+
+* ### São rotas que são geradas baseadas no valor de um parâmetro, por exemplo, um ID, que varia de pessoa pra pessoa:
+
+  ```jsx
+  <Route path="/pessoa/:id" element={<Pessoa />} />
+  ```
+
+### Assim, há uma rota para cada pessoa, baseada no ID único passado na rota.
+
+### De forma que, ao acessar `"/pessoa/10"`, encontra-se a pessoa de ID 10.
+
+### Para resgatar este dado dinâmico, no caso o **ID** da pessoa, pode-se utilizar o hook <font color=cyan>**useParams**</font>.
+
+- ### O hook <font color=cyan>**useParams**</font> retorna um objeto com todos os parâmetros da URL. Assim, pode-se acessar o parâmetro desejado desestruturando este objeto.
+
+## <center> <font size=6 color=orange> **Exemplo prático:**</font>
+
+### <center>**Na definição da rota dinâmica:**</center>
 
 ```jsx
-<Route path="/pessoa/:id" element={<Pessoa />} />
+...
+<Router>
+  <Routes>
+    <Route path="/pessoas/:id" element={<Pessoa />} />
+  </Routes>
+</Router>
 ```
 
-- ### Assim, há uma rota para cada pessoa, baseada no ID passado na rota.
+### <center>**no componente dinâmico:**</center>
 
-- ### De forma que, ao acessar `"/pessoa/10"`, encontra-se a pessoa de ID 10.
+```jsx
+import { useParams } from "react-router-dom";
+
+const Pessoa = () => {
+  const { id } = useParams();
+  return (
+    <>
+      <p>Id da pessoa: {id}</p>
+    </>
+  );
+};
+
+export default Pessoa;
+```
