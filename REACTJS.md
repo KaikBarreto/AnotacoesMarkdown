@@ -910,6 +910,8 @@
 
 ## <center>**<font color=orange size=7>[Hooks]</font>**
 
+## <center>[React Hooks Cheatsheet (consulta)](https://react-hooks-cheatsheet.com/)
+
 - ### São recursos do React que têm diversas funções, como, por exemplo, guardar e alterar o estado de algum dado na aplicação etc.
 
 - ### Eles permitem que usem-se o state e outros recursos do React sem escrever uma classe
@@ -1795,9 +1797,11 @@ export const useFetch = (url) => {
 </Router>
 ```
 
+---
+
 ## **<font size=6 color=orange>Rotas dinâmicas</font>**
 
-* ### São rotas que são geradas baseadas no valor de um parâmetro, por exemplo, um ID, que varia de pessoa pra pessoa:
+- ### São rotas que são geradas baseadas no valor de um parâmetro, por exemplo, um ID, que varia de pessoa pra pessoa:
 
   ```jsx
   <Route path="/pessoa/:id" element={<Pessoa />} />
@@ -1840,3 +1844,230 @@ const Pessoa = () => {
 
 export default Pessoa;
 ```
+
+---
+
+## **<font size=6 color=orange>Nested Routes (Rotas aninhadas)</font>**
+
+- ## As nested routes indicam <font color=cyan>**URLs mais complexas**</font>, como: <kbd>**`/pessoas/:id/algumaCoisa`**</kbd>
+
+- ## Neste caso, é necessário criar um componente que corresponda com o padrão indicado e também à URL no <font color=tomato>**App.jsx**</font>
+
+- ## Na nested route também <font color=cyan>**tem-se acesso ao parâmetro da url**</font>.
+
+## <center> <font size=5 color=orange> **Exemplo prático:**</font>
+
+### <center>**Na definição da rota dinâmica aninhada (nested route):**</center>
+
+```jsx
+...
+<Router>
+  <Routes>
+    <Route path="/pessoas/:id/info" element={<Info />} />
+  </Routes>
+</Router>
+```
+
+### <center>**no componente dinâmico da rota aninhada:**</center>
+
+```jsx
+import { useParams } from "react-router-dom";
+
+const Info = () => {
+  const { id } = useParams();
+
+  return (
+    <div>
+      <h1>Mais informações sobre a pessoa de id: {id}</h1>
+    </div>
+  );
+};
+export default Info;
+```
+
+> ### Assim, é possível renderizar um componente <font color=cyan>**Info**</font> aninhado na rota de pessoas.
+
+### <center> Ou seja, ao acessar <kbd>**`/pessoas/10/info`**</kbd>, será renderizado um componente <font color=cyan>**Info**</font> com as informações da **pessoa** de **id** 10.
+
+---
+
+## **<font size=6 color=orange>Página 404 (Rota não encontrada)</font>**
+
+- ## É possível criar uma página 404, ou seja, que **indica uma URL não encontrada**, facilmente com o **React Router**.
+
+- ## Basta criar um componente para esta página e atribuí-lo ao path **`"*"`** em **App.jsx**. Desta maneira, qualquer rota que não exista cairá neste componente.
+
+## <center> <font size=5 color=orange> **Na prática:**</font>
+
+### <center>**Na definição da rota 404:**</center>
+
+```jsx
+...
+<Router>
+  <Routes>
+    <Route path="*" element={<NotFound />} />
+  </Routes>
+</Router>
+```
+
+### <center>**no componente dinâmico da rota 404:**</center>
+
+```jsx
+const NotFound = () => {
+  return (
+    <div>
+      <h1>404</h1>
+      <p>Não há nada aqui =)</p>
+    </div>
+  );
+};
+
+export default NotFound;
+```
+
+---
+
+## **<font size=6 color=orange>Search Params <br>(parâmetros de busca)</font>**
+
+- ## **`Search Params`** é o recurso que permite obter o que vem na URL em forma de parâmetro.
+
+  - ### **Ex.:**
+
+    ## <kbd>**produtos?<font color=cyan>q=camisa</font>**</kbd>
+
+- ## Para obtê-los, utiliza-se o hook <font color=cyan>**useSearchParams**</font>.
+
+- ## Assim, é fácil construir uma **funcionalidade de busca** no sistema.
+
+  ***
+
+## <center> <font size=5 color=orange> **Na prática:**</font>
+
+- ### **App.jsx**
+
+  ```jsx
+  <Route path="/search" element={<Search />} />
+  ```
+
+  ***
+
+- ### **Search.jsx**
+
+  ```jsx
+  import { useSearchParams, Link } from "react-router-dom";
+  import { useFetch } from "../../hooks/useFetch";
+
+  const Search = () => {
+    const [searchParams] = useSearchParams();
+
+    const url = `http://localhost:3000/products?${searchParams}`;
+
+    const { data: items, loading, error } = useFetch(url);
+
+    return (
+      <div>
+        <h1>Resultados disponíveis</h1>
+
+        <ul className="products">
+          {items &&
+            items.map((product) => (
+              <li key={product.id}>
+                <h2>{product.name}</h2>
+                <p>R$: {product.price}</p>
+                <Link to={`/products/${product.id}`}>Detalhes</Link>
+              </li>
+            ))}
+        </ul>
+      </div>
+    );
+  };
+
+  export default Search;
+  ```
+
+  ***
+
+## **<font size=6 color=orange>useNavigate</font>**
+
+### <center> [Documentação](https://reactrouter.com/en/main/hooks/use-navigate)
+
+- ## O <font color=cyan>**useNavigate**</font> é um **hook**, do pacote `React Router` (react-router-dom), o qual retorna uma função que permite **navegar programáticamente entre as rotas** da aplicação react.
+
+- ## Um exemplo de uso do **useNavigate** é redirecionar o usuário após o **submit** de um formulário.
+
+## <center> <font size=5 color=orange> **Na prática:**</font>
+
+```jsx
+import { useNavigate } from "react-router-dom";
+
+function Formulário() {
+  let navigate = useNavigate();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    // ...
+
+    navigate("/rotaDestino");
+  }
+
+  return <form onSubmit={handleSubmit}>...</form>;
+}
+```
+
+### Neste caso, ao submeter o formulário, a função **handleSubmit** é disparada, e, ao seu fim, redireciona o usuário para a "rotaDestino".
+
+### <center> `O useNavigate possui outros parâmetros (vide documentação.)`
+
+---
+
+## **<font size=6 color=orange>Redirect</font>**
+
+- ## É possível que eventualmente seja necessário um <font color=cyan>**redirecionamento de páginas**</font>
+
+  - ### **Exemplo:** uma página antiga do sistema responde agora a uma nova url
+
+- ## Para isso, ao invés de criar uma lógica complexa com o **useNavigate**, é indicado **criar a rota com Route** normalmente, porém em **`element`** põe-se o <font color=cyan>**componente navigate**</font> com um <font color=cyan>**to**</font> que redireciona para a rota correta.
+
+## <center> <font size=5 color=orange> **Na prática:**</font>
+
+### <center> Uma página **"about"** que antes se chamava **"company"**
+
+- ### App.jsx
+
+  ```jsx
+  import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+  } from "react-router-dom";
+
+  const App = () => {
+    ...
+
+    return (
+      <Router>
+        <Routes>
+          <Route
+            path="/about"
+            element={<About />}
+          />
+
+          <Route
+            path="/company"
+            element={<Navigate to="/about" />}
+          />
+        </Routes>
+      </Router>
+    )
+  }
+
+  export default App
+  ```
+
+### <center> `Dessa forma, ao acessar a rota "/company", o usuário será redirecionado para "/about"`
+
+  ---
+
+# **<center><font color=cyan size=8>[Context API do React]</font>**
