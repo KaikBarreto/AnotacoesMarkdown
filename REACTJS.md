@@ -42,9 +42,9 @@
         <nav>
           <p>Exemplo</p>
         </nav>
-      );
+      )
     }
-    export default Navbar;
+    export default Navbar
     ```
 
   - ### Existem duas formas de escrever comentários num arquivo **JSX**:
@@ -52,15 +52,15 @@
     - ### Na parte da lógica do componente:
 
       ```jsx
-      import React from "react";
+      import React from "react"
 
       // Algum comentário
 
       const component = () => {
-        return <div>Exemplo</div>;
-      };
+        return <div>Exemplo</div>
+      }
 
-      export default component;
+      export default component
       ```
 
     - ### No próprio JSX (retorno do componente):
@@ -95,14 +95,14 @@
   - ### Arquivos JSX não precisam ser importados com sua extensão ".jsx"
 
     ```jsx
-    import Navbar from "./Navbar";
+    import Navbar from "./Navbar"
     ```
 
   - ### Para definir uma classe no retorn HTML do JSX, o react utiliza-se de "className" no lugar do convencional "class":
 
     ```jsx
     function Home() {
-      return <div className="nomeDaClasse">Lorem Ipsum</div>;
+      return <div className="nomeDaClasse">Lorem Ipsum</div>
     }
     ```
 
@@ -119,15 +119,15 @@
   - ### **Exemplo:**
 
   ```jsx
-  import React from "react";
+  import React from "react"
 
-  const name = "Kaik";
+  const name = "Kaik"
 
   const componente = () => {
-    return <div>Olá, {name}! Tudo bem?</div>;
-  };
+    return <div>Olá, {name}! Tudo bem?</div>
+  }
 
-  export default componente;
+  export default componente
   ```
 
   > #### Neste caso, o conteúdo da div seria: **Olá, Kaik! Tudo bem?**
@@ -150,10 +150,10 @@
 
     ```jsx
     const handleClick = function (e) {
-      console.log(e);
-    };
+      console.log(e)
+    }
 
-    return <button OnClick={handleClick}>Clique aqui</button>;
+    return <button OnClick={handleClick}>Clique aqui</button>
     ```
 
     - > #### ao clicar neste botão, a função handleClick será ativada, logando no console o evento em si.
@@ -193,11 +193,11 @@
       ```jsx
       const parOuImpar = function (numero) {
         if (numero % 2 == 0) {
-          return <span>Par</span>;
+          return <span>Par</span>
         } else if (numero % 2 == 1) {
-          return <span>Ímpar</span>;
+          return <span>Ímpar</span>
         }
-      };
+      }
       ```
 
       #### <center>Utilizando a função
@@ -205,7 +205,7 @@
       ```jsx
       // ... definição do componente
 
-      return <p>O número 5 é... {parOuImpar(5)}!</p>;
+      return <p>O número 5 é... {parOuImpar(5)}!</p>
       ```
 
       > #### <center> a frase do parágrafo seria: <font color=cyan>**O número 5 é... Ímpar!**</font>
@@ -246,10 +246,10 @@
           <input type="text" />
           <button>Adicionar</button>
         </>
-      );
+      )
     }
 
-    export default Home;
+    export default Home
     ```
 
   ***
@@ -273,18 +273,18 @@
     ### main.jsx
 
     ```jsx
-    import React from "react";
-    import ReactDOM from "react-dom/client";
+    import React from "react"
+    import ReactDOM from "react-dom/client"
 
-    import "./styles/global.css";
+    import "./styles/global.css"
 
-    import Home from "./pages/Home";
+    import Home from "./pages/Home"
 
     ReactDOM.createRoot(document.getElementById("root")).render(
       <React.StrictMode>
         <Home />
       </React.StrictMode>
-    );
+    )
     ```
 
   ***
@@ -320,16 +320,16 @@
           <strong>Kaik Barreto</strong>
           <small>10:15:24</small>
         </div>
-      );
+      )
     }
 
-    export default Card;
+    export default Card
     ```
 
     ### Reutilização do component **_Card_** (3x)
 
     ```jsx
-    import Card from "../../components/Card";
+    import Card from "../../components/Card"
 
     function Home() {
       return (
@@ -338,9 +338,9 @@
           <Card />
           <Card />
         </div>
-      );
+      )
     }
-    export default Home;
+    export default Home
     ```
 
   ***
@@ -356,7 +356,7 @@
     ### <font color=cyan>Criação do componente dinâmico</font>
 
     ```jsx
-    import "./styles.css";
+    import "./styles.css"
 
     function Card(props) {
       return (
@@ -364,10 +364,10 @@
           <strong>{props.name}</strong>
           <small>{props.time}</small>
         </div>
-      );
+      )
     }
 
-    export default Card;
+    export default Card
     ```
 
     - ### A keyword **props** permite que as propriedades sejam ilimitadas, cujos nomes venham após **<font color=lime>"props."</font>**
@@ -377,7 +377,7 @@
     ### <font color=cyan>Utilização dinâmica do componente, atribuindo valores na declaração do componente</font>
 
     ```jsx
-    import Card from "../../components/Card";
+    import Card from "../../components/Card"
 
     function Home() {
       return (
@@ -385,10 +385,10 @@
           <Card name="Kaik Barreto" time="10:55:25" />
           <Card name="João Feliciano" time="11:00:10" />
         </div>
-      );
+      )
     }
 
-    export default Home;
+    export default Home
     ```
 
     ***
@@ -404,7 +404,7 @@
           <strong>{name}</strong>
           <small>{time}</small>
         </div>
-      );
+      )
     }
     ```
 
@@ -413,15 +413,15 @@
     ### <font color=cyan>Utilização dinâmica do componente, atribuindo valores na declaração do componente</font>
 
     ```jsx
-    import Card from "../../components/Card";
+    import Card from "../../components/Card"
     function Home() {
       return (
         <div>
           <Card name="Fulano" time="08:50:38" />
         </div>
-      );
+      )
     }
-    export default Home;
+    export default Home
     ```
 
     ***
@@ -447,8 +447,8 @@
             <h2>Título</h2>
             {children}
           </>
-        );
-      };
+        )
+      }
       ```
 
     - #### Utilização do componente Container no componente pai
@@ -459,8 +459,8 @@
           <Container>
             <p>conteúdo interno</p>
           </Container>
-        );
-      };
+        )
+      }
       ```
 
     - #### <center> <font color=cyan>Será renderizado o seguinte:</font>
@@ -491,15 +491,15 @@
     ```jsx
     const Pai = () => {
       function mostrarMensagem() {
-        console.log("Evento do componente pai!");
+        console.log("Evento do componente pai!")
       }
 
       return (
         <div>
           <Filho funcaoHerdada={mostrarMensagem} />
         </div>
-      );
-    };
+      )
+    }
     ```
 
     ### <center> No componente filho:
@@ -512,8 +512,8 @@
             Clique aqui para disparar a função herdada.
           </button>
         </div>
-      );
-    };
+      )
+    }
     ```
 
     #### <center> A função **mostarMensagem( )** foi passada do componente **[Pai]** para o componente **[Filho]**. Assim, o componente **[Filho]** consegue acessar e executar essa função através da Prop **[funcaoHerdada]**
@@ -529,10 +529,10 @@
   - ### O estado possui 2 elementos em forma de vetor/array: o primeiro é o conteúdo/valor do estado e o segundo é uma função que atualiza o valor do estado pelo parâmetro recebido:
 
     ```jsx
-    const [nome, setNome] = useState();
+    const [nome, setNome] = useState()
 
-    setNome("Kaik"); // nome se torna Kaik
-    setNome("João"); // nome se torna João
+    setNome("Kaik") // nome se torna Kaik
+    setNome("João") // nome se torna João
     ```
 
   - ### O método **useState()** pode receber como argumento um valor inicial para o estado
@@ -540,22 +540,22 @@
     - #### Exemplo, um nome que é atualizado baseado no estado, porém que começa sendo Kaik
 
       ```jsx
-      const [idade, setIdade] = useState(29);
+      const [idade, setIdade] = useState(29)
       // idade começa como 29
-      setIdade(30); // idade se torna 30
+      setIdade(30) // idade se torna 30
       ```
 
   - ### Por exemplo, pode-se guardar o valor de um input e atualizá-lo a cada vez que for alterado
 
     ```jsx
-    import React, { useState } from "react";
-    import Card from "../../components/Card";
+    import React, { useState } from "react"
+    import Card from "../../components/Card"
 
     function Home() {
-      const [personName, setPersonName] = useState();
+      const [personName, setPersonName] = useState()
 
       function handleNameChange(name) {
-        setPersonName(name);
+        setPersonName(name)
       }
 
       return (
@@ -567,9 +567,9 @@
             onChange={(e) => handleNameChange(e.target.value)}
           />
         </div>
-      );
+      )
     }
-    export default Home;
+    export default Home
     ```
 
     - ### Note-se que a importação <font color=lime>[import React, { useState } from 'react']</font> é indispensável para a utilização do estado
@@ -595,190 +595,19 @@
       ### <font color=lime>**Certo**</font>
 
       ```jsx
-      const [cityName, setCityName] = useState();
+      const [cityName, setCityName] = useState()
 
-      setCityName("Nova York"); // substituição do valor
+      setCityName("Nova York") // substituição do valor
       // cityName torna-se Nova York
       ```
 
       ### <font color=red>**Errado**</font>
 
       ```jsx
-      const [cityName, setCityName] = useState();
+      const [cityName, setCityName] = useState()
 
-      cityName = "Nova York"; // atualização do valor
+      cityName = "Nova York" // atualização do valor
       ```
-
-  ***
-
-- ## **<font color=orange size=5>[useState]</font>**
-
-  - ### O **useState** é o hook mais utilizado e serve para **gerenciar o estado de algum dado**, sendo esta a única forma de alterar uma varíavel e re-renderizá-la no React.
-
-  - ### Para guardar o dado, utilizamos o retorno da função useState( ), que é uma lista com a variável e uma função para alterar o estado da variável.
-
-  - ### O hook useState recebe como parâmetro o estado inicial da variável a ser criada.
-
-  - ### **Exemplo:**
-
-    #### <center> variável **nome**, cujo valor inicial é **"Kaik"**
-
-    ```jsx
-    // importação do useState
-    import { useState } from "react";
-
-    // criação da variável
-    const [nome, setNome] = useState("Kaik");
-
-    // alteração do estado usando a função retornada pelo useState
-    setNome("Matheus");
-    // nome passa a ser "Matheus"
-
-    console.log(nome); // Matheus
-    ```
-
-    #### <center> `A cada vez que é alterado o valor da variável com a função setVariável(), o componente é renderizado novamente, sem dar reload na página.`
-
-    ***
-
-  ## **<font color=orange>previous state</font>**
-
-  - ### **Previous state** é um recurso que nos permite pegar o dado em seu valor original dentro de um **set** de dado.
-
-  - ### Isso é muito utilizado para **modificar listas**, transformando o valor antigo em um novo valor.
-
-  - ### O **primeiro argumento** de um **set** sempre será o **previous state**, ou seja, o estado prévio (anterior) do dado, geralmente chamado simplesmente **`state`**, porém pode ser qualquer nome.
-
-  - ### **Exemplos:**
-
-    #### <center><font color=yellow>**1. mudar o estado do número para o sucessor do mesmo**</font>
-
-    ```jsx
-    // iniciando uma variável numero com o estado 0.
-    const [numero, setNumero] = useState(0);
-
-    setNumero((state) => {
-      return state + 1;
-    });
-    ```
-
-    #### <center>O set da variável número recebe como parâmetro uma outra função que usa o valor original do número (state) para retornar seu sucessor (state + 1) e alterar o estado para este novo número.
-
-    ***
-
-    #### <center><font color=yellow>**2. Alterar o estado de uma lista ao passar seu valor original por um filtro**</font>
-
-    ```jsx
-    // iniciando uma variável nomes
-    const [nomes, setNomes] = useState([
-      "Kaik",
-      "Matheus",
-      "Rafaella",
-      "Maicon",
-      "Maria",
-    ]);
-
-    setNomes((actualNomes) => {
-      return actualNomes.filter((nome) => nome.startsWith("M"));
-    });
-
-    console.log(nomes);
-    // ["Matheus", "Maicon", "Maria"]
-    ```
-
-    #### <center>O set da variável nomes recebe como parâmetro uma outra função que usa o array original de nomes para retornar um novo array apenas com nomes que comecem com "M".
-
-  ***
-
-- ## **<font color=orange size=5>[State Lift / Elevação de estado]</font>**
-
-  - ### Elevação de estado ou state lift **é quando um valor é elevado do componente filho para o componente pai**.
-
-  - ### Geralmente, tem-se **um componente que usa o state e outro que o altera**.
-
-  - ### Então, precisa-se **passar a alteração para o componente pai, e este passa para o componente que usa o state**.
-
-  - ### **Exemplo:**
-
-    ### <center> No componente pai:
-
-    ```jsx
-    const Pai = () => {
-      const [message, setMessage] = useState("");
-
-      function handleMessage(msg) {
-        setMessage(msg);
-      }
-
-      return (
-        <div>
-          <Message msg={message} />
-          <ChangeMessage handleMessage={handleMessage} />
-        </div>
-      );
-    };
-    ```
-
-    - #### <center> `Neste exemplo, o componente [Pai] administra o estado da variável message.`
-
-    - #### <center> O componente [Message] <font color=cyan>**recebe a variável message para consumí-la**</font>
-
-    - #### <center> O componente [ChangeMessage] <font color=red>**recebe a variável message para alterá-la**</font> e elevar este novo estado para o componente pai, renderizando novamente todos os componentes que consomem esta variável.
-
-  ***
-
-- ## **<font color=orange size=5>[useEffect]</font>**
-
-  - ### É um Hook utilizado para realizar uma função passada como parâmetro toda vez que um estado do array de dependências (também passado como parâmetro) for alterado.
-
-  - ### O **useEffect** é executado automaticamente **_assim que a interface é renderizada_**
-
-  - ### **Sintaxe**:
-
-    - ### recebe como parâmetros uma função **_(corpo)_** e um array **_(dependências)_**
-
-      ```jsx
-      useEffect(() => {
-        // corpo do useEffect
-      }, []); // array de dependências
-      ```
-
-    - ### O array de dependências recebe os estados de que o useEffect depende.
-
-      - #### O array vazio significa que o useEffect será realizado uma única vez
-
-      - #### Ao inserir um estado nas dependências, toda vez que este estado for atualizado o useEffect será executado novamente
-
-      - #### **Exemplo:**
-
-        ```jsx
-        useEffect(() => {
-          console.log("Alguém entrou na lista");
-        }, [lista]);
-        // toda vez que um estado da lista é alterado, o useEffect é disparado, imprimindo no console que "Alguém entrou na lista"
-        ```
-
-    ***
-
-  - ### **Exemplos de uso:**
-
-    ### <center> Imprimir no console uma mensagem assim que a interface for renderizada
-
-    ```jsx
-    useEffect(() => {
-      console.log("useEffect foi chamado!");
-    }, []);
-    ```
-
-    ***
-
-    ### <center> Imprimir no console uma mensagem toda vez que o estado da variável **Nome** for alterado
-
-    ```jsx
-    useEffect(() => {
-      console.log("O estado da variável Nome foi alterado!");
-    }, [Nome]);
-    ```
 
   ***
 
@@ -823,7 +652,7 @@
       { id: 1, marca: "Ferrari", modelo: "F8" },
       { id: 2, marca: "Lamborghini", modelo: "Gallardo" },
       { id: 3, marca: "Rolls Royce", modelo: "Phantom" },
-    ];
+    ]
 
     return (
       <ul>
@@ -833,7 +662,7 @@
           </li>
         ))}
       </ul>
-    );
+    )
     ```
 
     #### <center> Neste caso, para cada carro no array de carros, é renderizado um **li (list item)**, cuja **key** é o **ID** do carro, contendo um componente **Carro** que recebe as props **marca** e **modelo**.
@@ -852,7 +681,7 @@
 
     ```jsx
     {
-      frutas.map((fruta) => <Card key={fruta.ID} name={fruta.nome} />);
+      frutas.map((fruta) => <Card key={fruta.ID} name={fruta.nome} />)
     }
     ```
 
@@ -871,11 +700,11 @@
     #### <center><font color=yellow>**exibir um nome no template caso ele comece com a letra K (condicional simples)**</font>
 
     ```jsx
-    const nome = "Kaik";
+    const nome = "Kaik"
 
-    const [começaComK] = useState(nome.startsWith("K"));
+    const [começaComK] = useState(nome.startsWith("K"))
 
-    return <div>{começaComK && <p>{nome}</p>}</div>;
+    return <div>{começaComK && <p>{nome}</p>}</div>
     ```
 
     #### <center>Como a variável nome é uma string que começa com K, a variável "começaComK" inicia-se com o estado true. Sendo true, o paragrafo contendo o nome é renderizado.
@@ -895,22 +724,20 @@
   - ### **Exemplo:**
 
     ```jsx
-    const nome = "Kaik";
+    const nome = "Kaik"
 
-    const [começaComK] = useState(nome.startsWith("K"));
+    const [começaComK] = useState(nome.startsWith("K"))
 
     return (
       <div>{começaComK ? <p>Começa com K</p> : <p>Não começa com K</p>}</div>
-    );
+    )
     ```
 
     #### <center> `Assim, caso o valor de [começaComK] seja [true], o parágrafo após [?] será renderizado, caso seja [false], o parágrafo após [:] será renderizado.`
 
   ***
 
-## <center>**<font color=orange size=7>[Hooks]</font>**
-
-## <center>[React Hooks Cheatsheet (consulta)](https://react-hooks-cheatsheet.com/)
+## <center>**<font color=orange size=7>Hooks (conceito)</font>**
 
 - ### São recursos do React que têm diversas funções, como, por exemplo, guardar e alterar o estado de algum dado na aplicação etc.
 
@@ -923,6 +750,592 @@
 - ### É possível criar nossos próprios hooks, que ganham o nome de **Custom Hook**
 
 - ### Hooks precisam ser importados e são usados em praticamente toda aplicação React atual.
+
+---
+
+## <center>**<font color=orange size=7>Entendendo os Hooks</font>**
+
+## <center>[React Hooks Cheatsheet (consulta)](https://react-hooks-cheatsheet.com/)
+
+# <center>[React Hooks Explained (explicação em vídeo)](https://www.youtube.com/watch?v=TNhaISOUy6Q&t=410s)
+
+- ## **<font color=orange size=5>[useState]</font>**
+
+  - ### O **useState** é o hook mais utilizado e serve para **gerenciar o estado de algum dado**, sendo esta a única forma de alterar uma varíavel e re-renderizá-la no React.
+
+  - ### Para guardar o dado, utilizamos o retorno da função useState( ), que é uma lista com a variável e uma função para alterar o estado da variável.
+
+  - ### O hook useState recebe como parâmetro o estado inicial da variável a ser criada.
+
+  - ### **Exemplo:**
+
+    #### <center> variável **nome**, cujo valor inicial é **"Kaik"**
+
+    ```jsx
+    // importação do useState
+    import { useState } from "react"
+
+    // criação da variável
+    const [nome, setNome] = useState("Kaik")
+
+    // alteração do estado usando a função retornada pelo useState
+    setNome("Matheus")
+    // nome passa a ser "Matheus"
+
+    console.log(nome) // Matheus
+    ```
+
+    #### <center> `A cada vez que é alterado o valor da variável com a função setVariável(), o componente é renderizado novamente, sem dar reload na página.`
+
+    ***
+
+  ## **<font color=orange>previous state</font>**
+
+  - ### **Previous state** é um recurso que nos permite pegar o dado em seu valor original dentro de um **set** de dado.
+
+  - ### Isso é muito utilizado para **modificar listas**, transformando o valor antigo em um novo valor.
+
+  - ### O **primeiro argumento** de um **set** sempre será o **previous state**, ou seja, o estado prévio (anterior) do dado, geralmente chamado simplesmente **`state`**, porém pode ser qualquer nome.
+
+  - ### **Exemplos:**
+
+    #### <center><font color=yellow>**1. mudar o estado do número para o sucessor do mesmo**</font>
+
+    ```jsx
+    // iniciando uma variável numero com o estado 0.
+    const [numero, setNumero] = useState(0)
+
+    setNumero((state) => {
+      return state + 1
+    })
+    ```
+
+    #### <center>O set da variável número recebe como parâmetro uma outra função que usa o valor original do número (state) para retornar seu sucessor (state + 1) e alterar o estado para este novo número.
+
+    ***
+
+    #### <center><font color=yellow>**2. Alterar o estado de uma lista ao passar seu valor original por um filtro**</font>
+
+    ```jsx
+    // iniciando uma variável nomes
+    const [nomes, setNomes] = useState([
+      "Kaik",
+      "Matheus",
+      "Rafaella",
+      "Maicon",
+      "Maria",
+    ])
+
+    setNomes((actualNomes) => {
+      return actualNomes.filter((nome) => nome.startsWith("M"))
+    })
+
+    console.log(nomes)
+    // ["Matheus", "Maicon", "Maria"]
+    ```
+
+    #### <center>O set da variável nomes recebe como parâmetro uma outra função que usa o array original de nomes para retornar um novo array apenas com nomes que comecem com "M".
+
+  ***
+
+  - ## **<font color=orange size=5>[State Lift / Elevação de estado]</font>**
+
+    - ### Elevação de estado ou state lift **é quando um valor é elevado do componente filho para o componente pai**.
+
+    - ### Geralmente, tem-se **um componente que usa o state e outro que o altera**.
+
+    - ### Então, precisa-se **passar a alteração para o componente pai, e este passa para o componente que usa o state**.
+
+    - ### **Exemplo:**
+
+      ### <center> No componente pai:
+
+      ```jsx
+      const Pai = () => {
+        const [message, setMessage] = useState("")
+
+        function handleMessage(msg) {
+          setMessage(msg)
+        }
+
+        return (
+          <div>
+            <Message msg={message} />
+            <ChangeMessage handleMessage={handleMessage} />
+          </div>
+        )
+      }
+      ```
+
+      - #### <center> `Neste exemplo, o componente [Pai] administra o estado da variável message.`
+
+      - #### <center> O componente [Message] <font color=cyan>**recebe a variável message para consumí-la**</font>
+
+      - #### <center> O componente [ChangeMessage] <font color=red>**recebe a variável message para alterá-la**</font> e elevar este novo estado para o componente pai, renderizando novamente todos os componentes que consomem esta variável.
+
+      ***
+
+    ## **<font color=orange>useState e inputs</font>**
+
+    - ### **Atrelando o useState a um input**, é possível alterar o valor de um estado **toda vez que houver mudança no input**, por meio do evento **onChange**
+
+      - #### Exemplo:
+
+        ```jsx
+        const [nome, setNome] = useState("")
+
+        return (
+          <input
+          type="text"
+          name="nome"
+          onChange={(e) -> setNome(e.target.value)}
+          />
+        )
+        ```
+
+        - #### Assim, a cada alteração do input, o estado **`nome`** receberá o valor do input.
+
+  ***
+
+- ## **<font color=orange size=5>[useEffect]</font>**
+
+  - ### É um Hook utilizado para realizar uma função passada como parâmetro toda vez que um estado do array de dependências (também passado como parâmetro) for alterado.
+
+  - ### O **useEffect** é executado automaticamente **_assim que a interface é renderizada_**
+
+  - ### **Sintaxe**:
+
+    - ### recebe como parâmetros uma função **_(corpo)_** e um array **_(dependências)_**
+
+      ```jsx
+      useEffect(() => {
+        // corpo do useEffect
+      }, []) // array de dependências
+      ```
+
+    - ### O array de dependências recebe os estados de que o useEffect depende.
+
+      - #### O array vazio significa que o useEffect será realizado uma única vez
+
+      - #### Ao inserir um estado nas dependências, toda vez que este estado for atualizado o useEffect será executado novamente
+
+      - #### **Exemplo:**
+
+        ```jsx
+        useEffect(() => {
+          console.log("Alguém entrou na lista")
+        }, [lista])
+        // toda vez que um estado da lista é alterado, o useEffect é disparado, imprimindo no console que "Alguém entrou na lista"
+        ```
+
+    ***
+
+- ## **<font color=orange size=5>[useReducer]</font>**
+
+  - ### O useReducer tem a mesma função que o useState, ou seja, gerenciar valores. Porém, com este hook, há a possibilidade de **`executar uma função na hora da alteração do valor`**.
+
+  - ### Então, tem-se que o useReducer recebe um **`valor`** para gerenciar e **`uma função`** (geralmente chamada **_dispatch_**) para alterar este valor.
+
+  - ### **Exemplo:**
+
+    ```jsx
+    const Componente = () => {
+
+      const [number, dispatch] = useReducer({state, action} => {
+        return state * 2
+      })
+
+      return (
+        <p>Número: {number}</p>
+        <button
+          onClick={dispatch}
+        >
+          Dobrar número!
+        </button>
+      )
+    }
+    ```
+
+  - ### Neste caso, a função do useReducer (por convenção chamada **_dispatch_**) tem acesso ao estado atual da variável **_number_**, e, à cada vez que é chamada, altera o valor da mesma para o dobro.
+
+  ***
+
+- ## **<font color=orange size=5>[useReducer com actions]</font>**
+
+  - ### A vantagem de se utilizar o useReducer em detrimento do useState é conter **_`operações mais complexas`_**, utilizando a estrutura de **_`switch com actions`_**.
+
+## <center> **Exemplo:**
+
+#### <center> Incrementando ou diminuindo um valor com reducer
+
+```jsx
+function App() {
+
+  function contadorReducer(state, action) {
+    switch(action.type) {
+      case 'increment':
+        return state + 1
+      case 'decrement':
+        return state - 1
+      default:
+        return throw new Error(("Tipo inválido")
+    }
+  }
+
+  const [contador, countDispatch] = useReducer(contadorReducer, 0)
+
+  return (
+    <>
+      Contador: {contador}
+      <button
+      onClick={() => countDispatch({ type: "increment" })}>incrementar</button>
+
+      <button
+      onClick={() => countDispatch({ type: "decrement" })}> diminuir</button>
+
+    </>
+  )
+}
+```
+
+- ### Assim, o useReducer age em três instâncias:
+
+  1. ### na **_declaração do useReducer_**:
+
+     - #### este recebe como argumento a função que tratará a mudança de estado baseado na **_action_** passada como argumento na função **_countDispatch._** Como segundo argumento recebe o estado inicial da variável
+
+     - #### também retorna o estado (neste caso **_contador_**) e uma função de **_countDispatch_**, que envia uma **_action_** para a função tratadora (neste caso **_contadorReducer_**).
+
+       ```jsx
+       const [contador, countDispatch] = useReducer(contadorReducer, 0)
+       ```
+
+     ***
+
+  2. ### na **_declaração da função de tratamento_**:
+
+     - #### esta possui acesso ao estado atual da variável e também recebe como **_parâmetro_** uma action, que será usada de parâmetro para a manipulação do estado da variável.
+
+     - #### Por exemplo, caso o tipo do objeto action passado como argumento via countDispatch seja igual a "increment", o estado será **aumentado** em 1. Por outro lado, caso a action seja "decrement", o estado será **diminuído** em 1.
+
+       ```jsx
+       function contadorReducer(state, action) {
+         switch(action.type) {
+           case 'increment':
+             return state + 1
+           case 'decrement':
+             return state - 1
+           default:
+             return throw new Error(("Tipo inválido")
+         }
+       }
+       ```
+
+  3. ### no **_uso do reducer_**:
+
+     - #### geralmente é ao disparo de um evento que será realizada a mudança de estado, porém, com o useReducer esta mudança terá uma action, ou seja, um tipo diferente de alteração, como **incrementar** ou **diminuir** um estado.
+
+       ```jsx
+       return (
+         <>
+           Contador: {contador}
+           <button onClick={() => countDispatch({ type: "increment" })}>
+             incrementar
+           </button>
+           <button onClick={() => countDispatch({ type: "decrement" })}>
+             {" "}
+             diminuir
+           </button>
+         </>
+       )
+       ```
+
+  ***
+
+- ## **<font color=orange size=5>[useContext]</font>**
+
+  - ### é utilizado para **_consumir o valor de um contexto compartilhado entre componentes_**
+
+  - ### Mais informações sobre o uso de contextos na seção **_[CONTEXT API]_**
+
+  - ### **Exemplo:**
+
+    ```jsx
+    import { useContext } from "react"
+    import { CountContext } from "../context/CountContext"
+
+    const App = () => {
+      const { contador } = useContext(CountContext)
+
+      return <p>Valor do contexto {contador}</p>
+    }
+    ```
+
+    ***
+
+- ## **<font color=orange size=5>[useRef]</font>**
+
+  - ### o useRef pode ser utilizado como o useState para gerenciar valores, a diferença é que ele é um **_objeto_** e seu valor está na propriedade **_current_**.
+
+  - ### Outra particularidade do **_useRef_** é que ele <font color=cyan>não re-renderiza o componente ao ser alterado</font>, o que pode ser útil em alguns casos.
+
+  - ### **_Exemplo:_**
+
+    #### <center> a referência (**_counterRef_**) que mapeia quantas vezes o componente foi re-renderizado (ativação do useEffect).
+
+    ```jsx
+    import { useRef, useEffect, useState } from "react"
+
+    const Component = () => {
+      const counterRef = useRef(0)
+      const [counter, setCounter] = useState(0)
+
+      useEffect(() => {
+        counterRef.current = counterRef.current + 1
+      })
+
+      return (
+        <div>
+          <p>Valor da referência: {counterRef.current}</p>
+
+          <p>Valor do contador: {counter}</p>
+
+          <button onClick={() => setCounter(counter + 1)}>
+            Aumentar contador
+          </button>
+        </div>
+      )
+    }
+    ```
+
+  - ### Outra utilização interessante do **_useRef_** é <font color=tomato>selecionar elementos do **_JSX_**</font>. Com isso, é possível fazer <font color=tomato>manipulação de DOM ou aplicar funções como a focus</font>, que foca num input, por exemplo.
+
+  - ### **_Exemplo:_**
+
+    ```jsx
+    import { useRef } from "react"
+
+    const Component = () => {
+      const inputRef = useRef()
+      const [text, setText] = useState("")
+
+      const handleSubmit = (e) => {
+        e.preventDefault()
+
+        inputRef.current.focus()
+      }
+
+      return (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            ref={inputRef}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+
+          <input type="submit" value="Enviar" />
+        </form>
+      )
+    }
+    ```
+
+    > #### Como na função handleSubmit é utilizado o método **_focus_**, ao enviar o formulário o input atrelado ao **_inputRef_** será focado.
+
+    #### <center> Desta forma, a variável **`inputRef`** é preenchida com um objeto contendo todas as características do input. Para atrelar o **_inputRef_** com o input utilizou-se o **_atributo "ref"_** do input.
+
+  ***
+
+- ## **<font color=orange size=5>[useCallback]</font>**
+
+  - ### Basicamente, serve para <font color=tomato>**_memorizar uma função_**</font>, fazendo ela <font color=tomato>**_NÃO ser reconstruída a cada renderização_**</font> de um componente.
+
+  - ### O hook de **_useCallback_** pode ser utilizado para duas situações:
+
+    1. ### Quando preza-se pela <font color=tomato>**_performance_**</font>, então, deseja-se que uma função complexa não seja reconstruída toda vez.
+
+    2. ### Quando <font color=#5fd>o próprio react indica que uma função deveria estar contida em um useCallback</font> para evitar problemas de performance.
+
+  - ### **_Exemplo:_**
+
+    ```jsx
+    import { useCallback, useState } from 'react'
+
+    import Lista from "./Lista"
+
+    const Componente = () => {
+
+      const [counter, setCounter] = useState(0)
+
+      const getItemsFromDatabase = useCallback(() => {
+        return ["a", "b", "c", "d", "e", "f"]
+      }, [])
+
+      return <div>
+        <List getItems={getItemsFromDatabase} />
+
+        <button
+          onClick={() => setCounter(counter + 1)}
+        >Acrescentar 1</button>
+
+        <p>{counter}</p>
+      <div>
+    }
+    ```
+
+    > #### Ou seja, o useCallback **_envelopa_** uma função, realizando seu carregamento somente quando necessário.
+
+    #### <center style="text-align:justify; letter-spacing: 1px; background: #1d1e20; padding: 10px; border-radius:25px; font-size:1.2em; color:#0fdf89"> O useCallback também recebe como argumento um array de dependências, semelhantemente ao useEffect, porém neste caso sua execução depende apenas do carregamento da função 'getItemsFromDatabase'.
+
+  ***
+
+- ## **<font color=orange size=5>[useMemo]</font>**
+
+  - ### o **_useMemo_** pode ser utilizado para garantir a **_referência de um objeto_**, fazendo com que algo possa ser atrelado a uma referência e não um valor. Com isso consegue-se <font color=tomato>condicionar useEffects a uma variável</font> de maneira mais inteligente.
+
+  - ### É como se a utilização do ***useMemo*** fosse igual à do ***useCallback***, mas ao invés de uma função, envolve valores.
+
+  - ### **_Exemplo:_**
+
+    ```jsx
+    import { useState, useEffect, useMemo } from "react"
+
+    const Componente = () => {
+      const [number, setNumber] = useState()
+
+      const premiumNumbers = useMemo(() => {
+        return ["0", "10", "200"]
+      }, [])
+
+      useEffect(() => {
+
+        console.log("a variável premiumNumbers foi alterada")
+
+      }, [premiumNumbers])
+
+      return <div>
+        <input 
+          type="text"
+          onChange={(e) => setNumber(e.target.value)}
+        />
+        {premiumNumbers.includes(number) 
+        ? <p>Acertou o número</p> 
+        : ""}
+      </div>
+    }
+    ```
+
+    #### Desta maneira, o useMemo guarda de forma inteligente os valores, para que este não precise ser lido **TODA VEZ** que, por exemplo, o useEffect que o carrega como dependência seja executado ao iterar sobre a variável **premiumNumbers**.
+
+  ---
+
+- ## **<font color=orange size=5>[useLayoutEffect]</font>**
+
+  - ### É muito parecido com o ***useEffect***, a grande diferença é que este hook <font color=tomato>roda antes de renderizar o componente</font>, ou seja: o hook é ***síncrono***, bloqueando o carregamento da página para o sucesso de sua funcionalidade.
+
+  - ### A ideia é executar algo antes que o usuário veja a página.
+
+  - ### ***Exemplo:***
+
+    ```jsx
+    import { useLayoutEffect, useEffect, useState } from 'react'
+
+    const Componente = () => {
+
+      const [name, setName] = useState("Nome inicial")
+
+      useEffect(() => {
+
+        console.log("2")
+        setName("Outro novo nome")
+
+      }, [])
+
+      useLayoutEffect(() => {
+        console.log("1")
+        setName("Novo nome")
+      }, [])
+
+      return <div>
+        <p>Nome: {name}</p>
+      </div>
+    }
+    ```
+
+    ### <center> Neste caso, ainda que o **useEffect** venha antes no código, a ação do <font color=tomato>***useLayoutEffect***</font> será realizada primeiro!
+
+  ---
+
+- ## **<font color=orange size=5>[useImperativeHandle]</font>**
+
+  ### <center><span style="font-style: italic; font-weight: bold; color: tomato; background-color: #1d1e20;%;">"Componente pai executando função no componente filho"</span>
+
+  - ### com o hook <font color=cyan>***useImperativeHandle***</font> é possível acionar ações em outro componente de forma imperativa (de cima pra baixo).
+
+  - ### Como não é possível passar refs como props, precisa-se utilizar, para este fim, uma função ***`forwardRef`***, que permite passar as referências.
+
+  - ### ***Exemplo:***
+
+    ## <center> 1 - No componente pai
+
+    ```jsx
+    import { useRef } from 'react'
+
+    import ComponenteFilho from './ComponenteFilho'
+
+    const ComponentePai = () => {
+
+      const componentRef = useRef()
+
+      const
+
+      return (
+        <div>
+          <!-- Referenciação -->
+          <ComponenteFilho ref={componentRef} />
+          <!-- execução da função do comp. filho -->
+          <button
+            onClick={() componentRef.current.validate()}
+          >Validate</button>
+        </div>
+      )
+    }
+    ```
+
+    ## <center> 2 - No componente filho
+
+    ```jsx
+    import { forwardRef, useRef, useImperativeHandle } from 'react'
+
+    const ComponenteFilho = forwardRef((ref) => {
+
+      const localInputRef = useRef()
+
+      useImperativeHandle(ref, () => {
+        return {
+          validate: () => {
+            // Validação da condição 
+            if(localInputRef.current.value.length > 3) {
+              localInputRef.current.value = ""
+            }
+          }
+        }
+      })
+
+      return (
+        <div>
+          <!-- Condição -->
+          <p>Insira no máximo 3 caracteres.</p>
+          <input
+            type="text"
+            ref={localInputRef}
+          />
+        </div>
+      )
+    })
+    ```
+
+    #### <center> Dessa forma, o ***useImperativeHandle*** <font color=cyan>***expõe***</font> para o componente pai a função que pode ser ativada por ele. É como se este hook **elevasse** a função, semelhantemente ao conceito de ***`state lift`***.
 
 ---
 
@@ -961,13 +1374,13 @@
     #### <center> importação via path em src
 
     ```jsx
-    import Imagem from ".assets/imagem.jpg";
+    import Imagem from ".assets/imagem.jpg"
 
     return (
       <div>
         <img src={Imagem} />
       </div>
-    );
+    )
     ```
 
   ***
@@ -1015,13 +1428,13 @@
 
     ```jsx
     // css de componente
-    import "./index.css";
+    import "./index.css"
 
     const Navbar = () => {
-      return <nav>Aqui jaz uma Navbar</nav>;
-    };
+      return <nav>Aqui jaz uma Navbar</nav>
+    }
 
-    export default Navbar;
+    export default Navbar
     ```
 
   ***
@@ -1049,8 +1462,8 @@
         >
           Este elemento recebeu estilo inline
         </p>
-      );
-    };
+      )
+    }
     ```
 
   ***
@@ -1094,14 +1507,14 @@
 
   - ```jsx
     const App = () => {
-      const tituloVermelho = true;
+      const tituloVermelho = true
 
       return (
         <h2 className={tituloVermelho ? "titulo-vermelho" : "titulo-normal"}>
           Este título terá classe dinâmica
         </h2>
-      );
-    };
+      )
+    }
     ```
 
   - ```scss
@@ -1127,17 +1540,17 @@
   ### <center> **JSX** </center>
 
   - ```jsx
-    import styles from "./Componente.module.css";
+    import styles from "./Componente.module.css"
 
     const Componente = () => {
       return (
         <div>
           <h1 className={styles.meuTitulo}>Meu título</h1>
         </div>
-      );
-    };
+      )
+    }
 
-    export default Componente;
+    export default Componente
     ```
 
   ### <center> **CSS** </center>
@@ -1177,8 +1590,8 @@
           <input type="submit" value="enviar" />
         </div>
       </form>
-    );
-  };
+    )
+  }
   ```
 
   ***
@@ -1196,8 +1609,8 @@
         <span>Nome:</span>
         <input type="text" name="nome" placeholder="Digite aqui seu nome" />
       </label>
-    );
-  };
+    )
+  }
   ```
 
   ***
@@ -1213,14 +1626,14 @@
 ### <center> **`Exemplo:`**
 
 - ```jsx
-  import { useState } from "react";
+  import { useState } from "react"
 
   const Formulario = () => {
-    const [nome, setNome] = useState();
+    const [nome, setNome] = useState()
 
     const handleNome = (evento) => {
-      setNome(evento.target.value);
-    };
+      setNome(evento.target.value)
+    }
 
     return (
       <label>
@@ -1232,8 +1645,8 @@
           onChange={handleNome}
         />
       </label>
-    );
-  };
+    )
+  }
   ```
 
   > ### Dessa forma, a cada mudança realizada no input, como um dígito, a variável **name** recebe o novo valor.
@@ -1374,11 +1787,11 @@
 
 - ```jsx
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    setNome("");
-    setEmail("");
-  };
+    setNome("")
+    setEmail("")
+  }
   ```
 
   > ### Assim, o valor da variável **nome** volta a ser uma string nula.
@@ -1420,21 +1833,21 @@ export default Home
 - ## **<font color=orange size=5>[useEffect Async]</font>**
 
   ```jsx
-  const [user, setUser] = useState({ name: "", avatar: "" });
+  const [user, setUser] = useState({ name: "", avatar: "" })
 
   async function getUser(userUrl) {
-    const response = await fetch(userUrl);
-    const data = await response.json();
+    const response = await fetch(userUrl)
+    const data = await response.json()
 
     setUser({
       name: data.name,
       avatar: data.avatar_url,
-    });
+    })
   }
 
   useEffect(() => {
-    getUser("https://api.github.com/users/kaikbarreto");
-  }, []);
+    getUser("https://api.github.com/users/kaikbarreto")
+  }, [])
   ```
 
 ---
@@ -1594,35 +2007,35 @@ return (
 ## <center> <font color=orange size=6>**Exemplo: hook useFetch**</font>
 
 ```jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
 export const useFetch = (url) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(url);
-      const json = await res.json();
+      const res = await fetch(url)
+      const json = await res.json()
 
-      setData(json);
-    };
+      setData(json)
+    }
 
-    fetchData();
-  }, [url]);
+    fetchData()
+  }, [url])
 
-  return { data };
-};
+  return { data }
+}
 ```
 
 ## <center> **`De volta ao App.jsx:`**
 
 ```jsx
-import { useFetch } from "./hooks/useFetch";
+import { useFetch } from "./hooks/useFetch"
 
-const url = "http://localhost:3000/products";
+const url = "http://localhost:3000/products"
 
 function App() {
-  const { data: items } = useFetch(url);
+  const { data: items } = useFetch(url)
 
   return (
     <ul>
@@ -1633,7 +2046,7 @@ function App() {
           </li>
         ))}
     </ul>
-  );
+  )
 }
 ```
 
@@ -1651,26 +2064,26 @@ function App() {
 // dentro do método de fetch do hook, adicionar o loading:
 
 export const useFetch = (url) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
       // loading
-      setLoading(true);
+      setLoading(true)
 
-      const res = await fetch(url);
+      const res = await fetch(url)
 
-      const json = res.json();
+      const json = res.json()
 
-      setData(json);
+      setData(json)
 
-      setLoading(false);
-    };
+      setLoading(false)
+    }
 
-    fetchData();
-  }, [url, callFetch]);
-};
+    fetchData()
+  }, [url, callFetch])
+}
 ```
 
 ### <center> Ao iniciar o método assíncrono **`fetchData`**, o loading recebe o valor de **`true`**, e ao terminar todas as operações assíncronas, novamente volta ao seu estado de **`false`**.
@@ -1681,7 +2094,7 @@ export const useFetch = (url) => {
 
 ```jsx
 {
-  loading && <Loading />;
+  loading && <Loading />
 }
 
 {
@@ -1694,7 +2107,7 @@ export const useFetch = (url) => {
           </li>
         ))}
     </ul>
-  );
+  )
 }
 ```
 
@@ -1730,7 +2143,7 @@ export const useFetch = (url) => {
     Routes,
     Route,
     Link,
-  } from "react-router-dom";
+  } from "react-router-dom"
   ```
 
   ***
@@ -1831,18 +2244,18 @@ export const useFetch = (url) => {
 ### <center>**no componente dinâmico:**</center>
 
 ```jsx
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"
 
 const Pessoa = () => {
-  const { id } = useParams();
+  const { id } = useParams()
   return (
     <>
       <p>Id da pessoa: {id}</p>
     </>
-  );
-};
+  )
+}
 
-export default Pessoa;
+export default Pessoa
 ```
 
 ---
@@ -1871,18 +2284,18 @@ export default Pessoa;
 ### <center>**no componente dinâmico da rota aninhada:**</center>
 
 ```jsx
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"
 
 const Info = () => {
-  const { id } = useParams();
+  const { id } = useParams()
 
   return (
     <div>
       <h1>Mais informações sobre a pessoa de id: {id}</h1>
     </div>
-  );
-};
-export default Info;
+  )
+}
+export default Info
 ```
 
 > ### Assim, é possível renderizar um componente <font color=cyan>**Info**</font> aninhado na rota de pessoas.
@@ -1919,10 +2332,10 @@ const NotFound = () => {
       <h1>404</h1>
       <p>Não há nada aqui =)</p>
     </div>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound
 ```
 
 ---
@@ -1954,15 +2367,15 @@ export default NotFound;
 - ### **Search.jsx**
 
   ```jsx
-  import { useSearchParams, Link } from "react-router-dom";
-  import { useFetch } from "../../hooks/useFetch";
+  import { useSearchParams, Link } from "react-router-dom"
+  import { useFetch } from "../../hooks/useFetch"
 
   const Search = () => {
-    const [searchParams] = useSearchParams();
+    const [searchParams] = useSearchParams()
 
-    const url = `http://localhost:3000/products?${searchParams}`;
+    const url = `http://localhost:3000/products?${searchParams}`
 
-    const { data: items, loading, error } = useFetch(url);
+    const { data: items, loading, error } = useFetch(url)
 
     return (
       <div>
@@ -1979,10 +2392,10 @@ export default NotFound;
             ))}
         </ul>
       </div>
-    );
-  };
+    )
+  }
 
-  export default Search;
+  export default Search
   ```
 
   ***
@@ -1998,20 +2411,20 @@ export default NotFound;
 ## <center> <font size=5 color=orange> **Na prática:**</font>
 
 ```jsx
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 function Formulário() {
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
   function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
 
     // ...
 
-    navigate("/rotaDestino");
+    navigate("/rotaDestino")
   }
 
-  return <form onSubmit={handleSubmit}>...</form>;
+  return <form onSubmit={handleSubmit}>...</form>
 }
 ```
 
@@ -2095,9 +2508,9 @@ function Formulário() {
 - ### Arquivo **`CounterContext.jsx`**, na pasta **context**:
 
   ```jsx
-  import { createContext, useState } from "react";
+  import { createContext, useState } from "react"
 
-  export const CounterContext = createContext();
+  export const CounterContext = createContext()
   ```
 
   ***
@@ -2116,19 +2529,19 @@ function Formulário() {
 
   ```jsx
   // criação do Context...
-  import { createContext, useState } from "react";
-  export const CounterContext = createContext();
+  import { createContext, useState } from "react"
+  export const CounterContext = createContext()
 
   // criação do Provider...
   export const CounterContextProvider = ({ children }) => {
-    const [counter, setCounter] = useState(5);
+    const [counter, setCounter] = useState(5)
 
     return (
       <CounterContext.Provider value={{ counter, setCounter }}>
         {children}
       </CounterContext.Provider>
-    );
-  };
+    )
+  }
   ```
 
   > ### Neste caso, o **CounterContext** está sendo utilizado para **gerenciar o estado** da variável **_counter_**.
@@ -2138,7 +2551,7 @@ function Formulário() {
   ```jsx
   // ... imports
 
-  import { CounterContextProvider } from "./context/CounterContext";
+  import { CounterContextProvider } from "./context/CounterContext"
 
   ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
@@ -2146,7 +2559,7 @@ function Formulário() {
         <App />
       </CounterContextProvider>
     </React.StrictMode>
-  );
+  )
   ```
 
   ### <center> Note-se que o Provider do contexto CounterContext envolve o componente App, ou seja: **_todos os componentes filhos de App poderão utilizar o valor de 'counter'_**
@@ -2164,21 +2577,21 @@ function Formulário() {
 - ## <center> **_`Home.jsx`_**
 
   ```jsx
-  import { useContext } from "react";
-  import CounterContext from "../../context/CounterContext";
+  import { useContext } from "react"
+  import CounterContext from "../../context/CounterContext"
 
   const Home = () => {
-    const { counter } = useContext(CounterContext);
+    const { counter } = useContext(CounterContext)
 
     return (
       <div>
         <h1>Home</h1>
         <p>O valor que veio do contador do contexto é: {counter}</p>
       </div>
-    );
-  };
+    )
+  }
 
-  export default Home;
+  export default Home
   ```
 
   ***
@@ -2194,11 +2607,11 @@ function Formulário() {
 - ## <center> **_`ChangeCounter.jsx`_**
 
   ```jsx
-  import { useContext } from "react";
-  import { CounterContext } from "../../context/CounterContext";
+  import { useContext } from "react"
+  import { CounterContext } from "../../context/CounterContext"
 
   const ChangeCounter = () => {
-    const { counter, setCounter } = useContext(CounterContext);
+    const { counter, setCounter } = useContext(CounterContext)
 
     return (
       <div>
@@ -2206,9 +2619,9 @@ function Formulário() {
           Adicionar +1 ao counter
         </button>
       </div>
-    );
-  };
-  export default ChangeCounter;
+    )
+  }
+  export default ChangeCounter
   ```
 
   ### <center> Assim, a cada clique no botão, é disparada uma função que acrescenta +1 ao **_counter_**, e **_essa alteração é passada para todos os componentes que consomem este contexto_**.
