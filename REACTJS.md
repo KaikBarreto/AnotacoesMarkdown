@@ -2626,4 +2626,4 @@ function Formulário() {
 
   ### <center> Assim, a cada clique no botão, é disparada uma função que acrescenta +1 ao **_counter_**, e **_essa alteração é passada para todos os componentes que consomem este contexto_**.
 
----
+----
